@@ -59,6 +59,23 @@ private:
     virtual Image& applyToImpl(Image &) const override;
 };
 
+class Brightness : public Transform {
+public:
+    Brightness(double percents);
+
+private:
+    double m_percents = 0;
+    virtual Image& applyToImpl(Image &) const override;
+};
+
+class Contrast : public Transform {
+public:
+    Contrast(double percents);
+
+private:
+    double m_percents = 0;
+    virtual Image& applyToImpl(Image &) const override;
+};
 
 Image& operator<<=(Image &img, const Transform& tr);
 Image operator<<(const Image &img, const Transform& tr);
