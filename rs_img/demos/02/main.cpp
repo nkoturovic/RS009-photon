@@ -13,7 +13,8 @@ int main()
               * rs::Rotate(rs::Rotate::Direction::RIGHT);
         
         rs::Image img2 = img << rs::Rotate(rs::Rotate::Direction::LEFT) 
-                              * rs::Flip(rs::Flip::Axis::X);
+                              * rs::Flip(rs::Flip::Axis::X)
+                              * rs::Crop(100, 100, 50, 50);
 
         rs::stdisp.show(img); // stdisp objekat
 

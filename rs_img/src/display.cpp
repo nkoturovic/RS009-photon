@@ -11,12 +11,11 @@ Display::Display(std::string name_of_display) : m_display_name(std::move(name_of
 }
 
 void Display::show(Image &img) {
-    /* TODO: @Andrijana (Napisati implementaciju) */
-    /* Na raspolaganju: m_display_id, m_display_name i get_impl(img).m_image);  */
+    cv::imshow(std::to_string(m_display_id) + ":" + m_display_name, get_impl(img).m_image);
 }
 
 void Display::waitKey(int delay) {
-    /* TODO: @Andrijana (Napisati implementaciju) */
+    cv::waitKey(delay);
 }
 
 }

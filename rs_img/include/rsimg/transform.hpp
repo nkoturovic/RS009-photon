@@ -77,6 +77,17 @@ private:
     virtual Image& applyToImpl(Image &) const override;
 };
 
+class Crop : public Transform{
+    public:
+        Crop(int x, int y, int width, int height);
+    private:
+        int m_x;
+        int m_y;
+        int m_width;
+        int m_height;
+        virtual Image& applyToImpl(Image &) const override;
+};
+
 Image& operator<<=(Image &img, const Transform& tr);
 Image operator<<(const Image &img, const Transform& tr);
 Composition operator*(const Transform& tr1, const Transform& tr2);

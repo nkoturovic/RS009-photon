@@ -7,16 +7,19 @@ namespace rs {
 Rotate::Rotate(Rotate::Direction direction) : m_direction(direction) {}
 
 Image& Rotate::applyToImpl(Image &img) const {
-    cv::Mat &image = get_impl(img).m_image;
-    /* TODO: @Andrijana (Napisati implementaciju) */
+    cv::Mat &imageRef = get_impl(img).m_image;
+    switch (m_direction) {
+        case Direction::RIGHT : cv::rotate( imageRef, imageRef, cv::ROTATE_90_CLOCKWISE); break;
+        case Direction::LEFT : cv::rotate( imageRef, imageRef, cv::ROTATE_90_COUNTERCLOCKWISE); break;
+    }
     return img;
 }
 
 Flip::Flip(Axis axis) : m_axis(axis) {}
 
 Image& Flip::applyToImpl(Image &img) const {
-    cv::Mat &image = get_impl(img).m_image;
-    /* TODO: @Andrijana (Napisati implementaciju) */
+    cv::Mat &imageRef = get_impl(img).m_image;
+    cv::flip(imageRef, imageRef, static_cast<int>(m_axis));
     return img;
 }
 
@@ -30,53 +33,38 @@ Image& Composition::applyToImpl(Image &img) const {
 BlackNWhite::BlackNWhite() { }
 
 Image& BlackNWhite::applyToImpl(Image &img) const { 
-    cv::Mat &image = get_impl(img).m_image;
-    /* TODO: @Andrijana (Napisati implementaciju) */
+    cv::Mat &imageRef = get_impl(img).m_image;
+    cv::cvtColor(imageRef, imageRef, cv::COLOR_BGR2GRAY );
     return img;
 }
 
 Brightness::Brightness(double percents) : m_percents(percents) {}
 
 Image& Brightness::applyToImpl(Image &img) const {
-    cv::Mat &image = get_impl(img).m_image;
+    cv::Mat &imageRef = get_impl(img).m_image;
+    auto val = m_percents / 100 * 255;
+    imageRef.convertTo(imageRef, -1, 1, val);
 
-    /* TODO: @Andrijana (Napisati implementaciju) 
-     *
-     * Nivo potrebne promene osvetljenosti je izrazen u procentima i 
-     * nalazi se u polju: m_percents. Da bi se pronasla vrednost za koju
-     * sliku treba posvetliti, mora se uzeti u obzir trenutna osvetljenost slike
-     * jer se osvetljenost piksela izrazava u opsegu 0-255 za svaku od kompon-
-     * enti piksela (RGB). Primeniti nesto nalik na sledecu formulu:
-     * NEW_R = OLD_R + ((OLD_R * percent)/100);
-     * NEW_G = OLD_G + ((OLD_G * percent)/100);
-     * NEW_B = OLD_B + ((OLD_B * percent)/100); 
-     *
-     * Ovo ce raditi i za procente koji su oblika -100, -150, 200 ... Mada moze 
-     * se vrlo lako i ograniciti. 
-     *
-     * Funkcija opencv transform bi trebalo da prima nesto nalik:
-     * ((OLD_R * percent)/100) ako se ne varam */
-     return img;
+    return img;
 }
 
 Contrast::Contrast(double percents) : m_percents(percents) {
 }
 
 Image& Contrast::applyToImpl(Image &img) const {
-    cv::Mat &image = get_impl(img).m_image;
+    cv::Mat &imageRef = get_impl(img).m_image;
 
-    /* TODO: @Andrijana (Napisati implementaciju) 
-     *
-     * Vazi isto sto i za Brightness, samo ovde umesto uvecanje za odredjeni procenat
-     * vrednoste (R,G,B) komponenti treba mnoziti sa odgovarajucim koeficijentom:
-     *
-     * Npr: NEW_R = OLD_R * (100 + percent)/100) 
-     * Npr: NEW_G = OLD_G * (100 + percent)/100) 
-     * Npr: NEW_B = OLD_B * (100 + percent)/100) 
-     *
-     * Funkcija opencv transform bi trebalo da prima nesto nalik:
-     * (100 + percent)/100) */
+    auto val = (m_percents / 100) + 1;
+    imageRef.convertTo(imageRef, -1, val, 0);
+    return img;
+}
+Crop::Crop(int x, int y, int width, int height)
+        : m_x(x), m_y(y), m_width(width), m_height(height)
+    {}
 
+Image& Crop::applyToImpl(Image &img) const {
+    cv::Mat &imageRef = get_impl(img).m_image;
+    imageRef(cv::Rect(m_x, m_y, m_width, m_height)).copyTo(imageRef);
     return img;
 }
 
