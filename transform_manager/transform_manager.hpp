@@ -12,17 +12,17 @@ template <typename X>
 class Transform {
 public:
 
-    friend X& operator<<=(X &x, const Transform& tr) { 
-        return tr.apply(x); 
-    }
-
-    friend X operator<<(const X &x, const Transform& tr) { 
-        X copy(x);
-        return copy <<= tr;
-    }
-
     X& operator()(X &x) {
-        this->apply(x);
+        return this->apply(x);
+    }
+
+    friend X& operator<<=(X &x, const Transform& tform) { 
+        return tform.apply(x); 
+    }
+
+    friend X operator<<(const X &x, const Transform& tform) { 
+        X copy(x);
+        return tform.apply(copy);
     }
 
 private:
@@ -37,11 +37,12 @@ public:
     { return Composition(tr1, tr2); }
 
 private:
-    Composition(const Transform<X> &tr1, const Transform<X> &tr2)
-        :m_composition( [&tr1, &tr2](X &x) -> X& { return (x <<= tr2) <<= tr1; } ) {}
+    std::function<X&(X&)> m_composition;
+
+    Composition(const Transform<X> &tform1, const Transform<X> &tform2)
+        : m_composition( [tform1, &tform2](X &x) -> X& { return tform1(tform2(x)); } ) {}
 
     virtual X& apply(X &x) const override { return m_composition(x); }
-    std::function<X&(X&)> m_composition;
 };
 
 
@@ -55,10 +56,11 @@ private:
     std::optional<std::future<Transform<X>>> m_next {};
 
     // Transformations that transform origin to current
-    std::deque<Transform<X>> m_previousTransforms;
+    std::vector<Transform<X>> m_previousTransforms;
 
-    // Transformations that were previously done than undone
-    std::deque<Transform<X>> m_nextTransforms;
+    // Transformations that were previously done 
+    // than undone - in reverse order (be cautious)
+    std::vector<Transform<X>> m_nextTransforms;
 
 
 public:
@@ -75,13 +77,13 @@ public:
         m_previous = std::move(m_current);
         m_current = std::move(m_next);
 
-        m_previousTransforms.push_back(std::move(m_nextTransforms.front()));
-        m_previousTransforms.pop_front();
+        m_previousTransforms.push_back(std::move(m_nextTransforms.back()));
+        m_nextTransforms.pop_back();
 
         bool hasNext = not m_nextTransforms.empty();
 
         if (hasNext)
-            m_next = std::async(std::launch::async, [&] { return m_previousTransforms.front()(m_current); });
+            m_next = std::async(std::launch::async, [&] { return m_nextTransforms.back(m_current); });
         else
             m_next = {};
 
@@ -95,20 +97,20 @@ public:
 
         m_next = std::move(m_current);
         m_current = std::move(m_previous);
-        m_nextTransforms.push_front(std::move(m_previousTransforms.back()));
+        m_nextTransforms.push(std::move(m_previousTransforms.back()));
         m_previousTransforms.pop_back();
 
         /* Make composition from previous transformations */
-        auto tform = std::accumulate(std::next(m_previousTransforms.crbegin()), 
-                                     m_previousTransforms.crend(), 
-                                     m_previousTransforms.crbegin(), 
-                                     std::multiplies<>()
+        auto comp = std::accumulate(std::next(m_previousTransforms.crbegin()), 
+                                              m_previousTransforms.crend(), 
+                                              m_previousTransforms.crbegin(), 
+                                              std::multiplies<>()
         );
 
         bool hasPrev = not m_previousTransforms.empty();
 
         if (hasPrev)
-            m_previous = std::async(std::launch::async, [&] { return tform(m_origin); });
+            m_previous = std::async(std::launch::async, [&] { return comp(m_origin); });
         else
             m_previous = {};
 
@@ -119,6 +121,7 @@ public:
         m_previous = m_current;
         tform(m_current);
         m_previousTransforms.push_back(std::move(tform));
+        m_nextTransforms.clear();
     }
 };
 
