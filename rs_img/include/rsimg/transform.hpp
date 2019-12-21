@@ -9,29 +9,38 @@ namespace rs {
 
 class Transform {
 public:
-    friend Image& operator<<=(Image &img, const Transform& tr) { 
-        return tr.applyToImpl(img); 
+    Image& operator()(Image &img) const {
+        return this->apply(img);
     }
 
-    friend Image operator<<(const Image &img, const Transform& tr) { 
+    friend Image& operator<<=(Image &img, const Transform& tform) { 
+        return tform.apply(img); 
+    }
+
+    friend Image operator<<(const Image &img, const Transform& tform) { 
         Image copy(img);
-        return copy <<= tr;
+        return tform.apply(copy);
     }
 
 private:
-    virtual Image& applyToImpl(Image &) const = 0;
+    virtual Image& apply(Image &) const = 0;
 };
+
 
 class Composition : public Transform {
 public:
-    friend Composition operator*(const Transform& tr1, const Transform& tr2) 
-    { return Composition(tr1, tr2); }
+    friend Composition operator*(Transform && tr1, Transform &&tr2) 
+        { return Composition(std::move(tr1), std::move(tr2)); }
 
 private:
-    Composition(const Transform& tr1, const Transform& tr2);
+    const Transform &m_tform1;
+    const Transform &m_tform2;
+    std::function<Image&(Image&)> func;
 
-    virtual Image& applyToImpl(Image &) const override;
-    std::function<Image&(Image&)> m_composition;
+    Composition(Transform &&tform1, Transform &&tform2)
+        : m_tform1(std::move(tform1)), m_tform2(std::move(tform2)) {}
+
+    virtual Image& apply(Image &x) const override { return m_tform1(m_tform2(x)); }
 };
 
 class Rotate : public Transform {
@@ -40,7 +49,7 @@ public:
     Rotate(Direction);
 private:
     Direction m_direction;
-    virtual Image& applyToImpl(Image &) const override;
+    virtual Image& apply(Image &) const override;
 };
 
 class Flip : public Transform {
@@ -49,14 +58,14 @@ public:
     Flip(Axis);
 private:
     Axis m_axis;
-    virtual Image& applyToImpl(Image &) const override;
+    virtual Image& apply(Image &) const override;
 };
 
 class BlackNWhite : public Transform {
 public:
     BlackNWhite();
 private:
-    virtual Image& applyToImpl(Image &) const override;
+    virtual Image& apply(Image &) const override;
 };
 
 class Brightness : public Transform {
@@ -65,7 +74,7 @@ public:
 
 private:
     double m_percents = 0;
-    virtual Image& applyToImpl(Image &) const override;
+    virtual Image& apply(Image &) const override;
 };
 
 class Contrast : public Transform {
@@ -74,7 +83,7 @@ public:
 
 private:
     double m_percents = 0;
-    virtual Image& applyToImpl(Image &) const override;
+    virtual Image& apply(Image &) const override;
 };
 
 class Crop : public Transform{
@@ -85,12 +94,12 @@ class Crop : public Transform{
         int m_y;
         int m_width;
         int m_height;
-        virtual Image& applyToImpl(Image &) const override;
+        virtual Image& apply(Image &) const override;
 };
 
 Image& operator<<=(Image &img, const Transform& tr);
 Image operator<<(const Image &img, const Transform& tr);
-Composition operator*(const Transform& tr1, const Transform& tr2);
+Composition operator*(Transform &&tr1, Transform &&tr2);
 
 } // namespace rs
 

@@ -17,6 +17,7 @@ int main()
                               * rs::Crop(100, 100, 50, 50);
 
         rs::stdisp.show(img); // stdisp objekat
+        rs::Display::waitKey();
 
         rs::Display disp1; // Neimenovan display
         img <<= rs::Flip(rs::Flip::Axis::Y) * rs::BlackNWhite();

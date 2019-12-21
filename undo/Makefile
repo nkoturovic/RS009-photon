@@ -1,14 +1,11 @@
 PROGRAM   = main.out
 CXX       = g++
-CXXFLAGS  = -g -std=c++17 -Wall -Wextra -Wpedantic
+CXXFLAGS  = -g -std=c++17 -Wall -Wextra -Wpedantic -Iinclude -pthread -Wno-unused-parameter
 
-$(PROGRAM): main.o transform_manager.o
+$(PROGRAM): main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-main.o: main.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
-
-transform_manager.o: transform_manager.cpp transform_manager.hpp
+main.o: main.cpp undo.hpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 .PHONY: clean dist
