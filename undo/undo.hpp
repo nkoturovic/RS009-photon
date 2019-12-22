@@ -42,15 +42,15 @@ private:
 
 template <class X, class Action>
 void Undo<X,Action>::action(Action && action) {
-        m_originEqCurrent = false;
-        m_previous = m_current;
-        action(m_current);
+    m_originEqCurrent = false;
+    m_previous = m_current;
+    action(m_current);
 
-        m_previousActions = m_previousActions.push_back(std::move(action));
+    m_previousActions = m_previousActions.push_back(std::move(action));
 
-        m_next = {};
-        m_nextActions = {};
-    }
+    m_next = {};
+    m_nextActions = {};
+}
 
 
 template <class X, class Action>

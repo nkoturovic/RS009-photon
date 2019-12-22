@@ -1,5 +1,5 @@
 #include <iostream>
-#include "undo.hpp"
+#include "../undo.hpp"
 
 int main()
 {

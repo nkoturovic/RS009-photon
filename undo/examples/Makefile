@@ -9,16 +9,16 @@ OPENCV_LIBS := $(shell pkg-config opencv --libs)
 all: $(PROGRAM1) $(PROGRAM2)
 	@echo 'Build finished'
 
-$(PROGRAM2): image_example.o ../rs_img/librsimg.a
+$(PROGRAM2): image_example.o ../../rs_img/librsimg.a
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(OPENCV_LIBS)
 
-image_example.o: image_example.cpp undo.hpp
+image_example.o: image_example.cpp ../undo.hpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $< $(OPENCV_CFLAGS)
 
 $(PROGRAM1): int_example.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-int_example.o: int_example.cpp undo.hpp
+int_example.o: int_example.cpp ../undo.hpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 .PHONY: clean dist

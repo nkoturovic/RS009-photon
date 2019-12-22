@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "undo.hpp"
-#include "../rs_img/include/rsimg/display.hpp"
-#include "../rs_img/include/rsimg/image.hpp"
-#include "../rs_img/include/rsimg/exception.hpp"
-#include "../rs_img/include/rsimg/transform.hpp"
+#include "../undo.hpp"
+#include "../../rs_img/include/rsimg/display.hpp"
+#include "../../rs_img/include/rsimg/image.hpp"
+#include "../../rs_img/include/rsimg/exception.hpp"
+#include "../../rs_img/include/rsimg/transform.hpp"
 
 int main()
 {
