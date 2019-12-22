@@ -27,6 +27,8 @@ Photon omogućava primenu nekih uobičajenih efekata nad 2D fotografijom kao št
 
 2) [Qt-5](https://doc.qt.io/qt-5/) - Poznata C++ biblioteka, u ovom projektu se koristi za izradu *grafičkog korisničkog interfejsa*.
 
+3) [Immer](https://github.com/arximboldi/immer) - Biblioteka (*State of the art*) perzistentnih imutabilnih struktura podataka.
+
 ## Eksterne reference
 
 Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodeljen našem timu, stoga vam na uvid dostavljamo reference koje prikazuju razvoj pre (ali i za vreme) razvoja projekta u okviru ovog repozitorijuma.
