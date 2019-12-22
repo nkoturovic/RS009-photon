@@ -4,7 +4,7 @@
 int main()
 {
     
-    Undo<int> intHist(2);
+    rs::Undo<int> intHist(2);
     std::cout << intHist.current() << '\n'; 
 
     auto [succ0, nextSucc0] = intHist.undo();

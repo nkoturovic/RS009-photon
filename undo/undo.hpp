@@ -8,6 +8,8 @@
 
 #include <immer/vector.hpp>
 
+namespace rs {
+
 template <class X, class Action = std::function<void(X&)>>
 class Undo {
 private:
@@ -130,5 +132,7 @@ public:
         return { true, hasNext };
     }
 };
+
+} // ns rs
 
 #endif

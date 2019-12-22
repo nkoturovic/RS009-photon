@@ -9,7 +9,7 @@ class Display {
 public:
     Display(std::string name_of_display = "Image Display");
 
-    void show(Image &img);
+    void show(const Image &img);
     static void waitKey(int delay=0);
 private:
     unsigned m_display_id;
