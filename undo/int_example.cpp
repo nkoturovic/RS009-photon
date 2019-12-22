@@ -3,7 +3,6 @@
 
 int main()
 {
-    
     rs::Undo<int> intHist(2);
     std::cout << intHist.current() << '\n'; 
 
@@ -46,12 +45,11 @@ int main()
 
     std::cout << intHist.current() << '\n'; 
 
-     for (bool has_more = true; has_more;) {
-         auto [succ6, nextSucc6] = intHist.redo();
-         std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << intHist.current() << '\n'; 
-         has_more = nextSucc6;
-     }
-
+    for (bool has_more = true; has_more;) {
+        auto [succ6, nextSucc6] = intHist.redo();
+        std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << intHist.current() << '\n'; 
+        has_more = nextSucc6;
+    }
 
     return 0;
 }

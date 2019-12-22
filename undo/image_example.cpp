@@ -47,6 +47,41 @@ int main()
     auto [succ1, succNextUndo1] = imgUndo.undo();
     std::cout << succ1 << ' ' << succNextUndo1 << '\n';
 
+    imgUndo.action([](rs::Image &img) {
+            img <<= rs::BlackNWhite();
+    });
+
+    rs::stdisp.show(imgRef);
+    rs::Display::waitKey();
+
+    auto [succ2, succNextUndo2] = imgUndo.redo();
+    std::cout << succ2 << ' ' << succNextUndo2 << '\n';
+
+    rs::stdisp.show(imgRef);
+    rs::Display::waitKey();
+
+    auto [succ3, succNextUndo3] = imgUndo.undo();
+    std::cout << succ3 << ' ' << succNextUndo3 << '\n';
+
+    rs::stdisp.show(imgRef);
+    rs::Display::waitKey();
+
+    auto [succ4, succNextUndo4] = imgUndo.undo();
+    std::cout << succ4 << ' ' << succNextUndo4 << '\n';
+
+    rs::stdisp.show(imgRef);
+    rs::Display::waitKey();
+
+    auto [succ5, succNextUndo5] = imgUndo.redo();
+    std::cout << succ5 << ' ' << succNextUndo5 << '\n';
+
+    rs::stdisp.show(imgRef);
+    rs::Display::waitKey();
+
+    auto [succ6, succNextUndo6] = imgUndo.redo();
+    std::cout << succ6 << ' ' << succNextUndo6 << '\n';
+
+
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
 
