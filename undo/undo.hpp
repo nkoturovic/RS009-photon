@@ -17,6 +17,8 @@ public:
 
     const X& origin() const { return m_origin; }
     const X& current() const { return m_current; }
+    immer::vector<Action> previousActions() const { return m_previousActions; }
+    immer::vector<Action> nextActions() const { return m_nextActions; }
 
     void action(Action && action);
 

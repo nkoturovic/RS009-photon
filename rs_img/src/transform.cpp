@@ -6,7 +6,7 @@ namespace rs {
 
 Rotate::Rotate(Rotate::Direction direction) : m_direction(direction) {}
 
-Image& Rotate::apply(Image &img) const {
+Image& Rotate::applyImpl(Image &img) const {
     cv::Mat &imageRef = get_impl(img).m_image;
     switch (m_direction) {
         case Direction::RIGHT : cv::rotate( imageRef, imageRef, cv::ROTATE_90_CLOCKWISE); break;
@@ -17,7 +17,7 @@ Image& Rotate::apply(Image &img) const {
 
 Flip::Flip(Axis axis) : m_axis(axis) {}
 
-Image& Flip::apply(Image &img) const {
+Image& Flip::applyImpl(Image &img) const {
     cv::Mat &imageRef = get_impl(img).m_image;
     cv::flip(imageRef, imageRef, static_cast<int>(m_axis));
     return img;
@@ -25,7 +25,7 @@ Image& Flip::apply(Image &img) const {
 
 BlackNWhite::BlackNWhite() { }
 
-Image& BlackNWhite::apply(Image &img) const { 
+Image& BlackNWhite::applyImpl(Image &img) const { 
     cv::Mat &imageRef = get_impl(img).m_image;
     cv::cvtColor(imageRef, imageRef, cv::COLOR_BGR2GRAY );
     return img;
@@ -33,7 +33,7 @@ Image& BlackNWhite::apply(Image &img) const {
 
 Brightness::Brightness(double percents) : m_percents(percents) {}
 
-Image& Brightness::apply(Image &img) const {
+Image& Brightness::applyImpl(Image &img) const {
     cv::Mat &imageRef = get_impl(img).m_image;
     auto val = m_percents / 100 * 255;
     imageRef.convertTo(imageRef, -1, 1, val);
@@ -44,7 +44,7 @@ Image& Brightness::apply(Image &img) const {
 Contrast::Contrast(double percents) : m_percents(percents) {
 }
 
-Image& Contrast::apply(Image &img) const {
+Image& Contrast::applyImpl(Image &img) const {
     cv::Mat &imageRef = get_impl(img).m_image;
 
     auto val = (m_percents / 100) + 1;
@@ -55,7 +55,7 @@ Crop::Crop(int x, int y, int width, int height)
         : m_x(x), m_y(y), m_width(width), m_height(height)
     {}
 
-Image& Crop::apply(Image &img) const {
+Image& Crop::applyImpl(Image &img) const {
     cv::Mat &imageRef = get_impl(img).m_image;
     imageRef(cv::Rect(m_x, m_y, m_width, m_height)).copyTo(imageRef);
     return img;
