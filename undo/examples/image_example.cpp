@@ -23,17 +23,13 @@ int main()
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
 
-    imgUndo.action([](rs::Image &img) {
-            img <<= rs::Rotate(rs::Rotate::Direction::RIGHT)
-                  * rs::Rotate(rs::Rotate::Direction::RIGHT);
-    });
+    imgUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT) *
+                   rs::Rotate(rs::Rotate::Direction::RIGHT));
 
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
 
-    imgUndo.action([](rs::Image &img) {
-            img <<= rs::Flip(rs::Flip::Axis::Y);
-    });
+    imgUndo.action(rs::Flip(rs::Flip::Axis::Y) * rs::Brightness(50));
 
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
@@ -47,9 +43,7 @@ int main()
     auto [succ1, succNextUndo1] = imgUndo.undo();
     std::cout << succ1 << ' ' << succNextUndo1 << '\n';
 
-    imgUndo.action([](rs::Image &img) {
-            img <<= rs::BlackNWhite();
-    });
+    imgUndo.action(rs::BlackNWhite());
 
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();

@@ -6,28 +6,28 @@
 - Na osnovu prosleđenih akcija Undo će kasnije znati kako da vrati objekat koji obmotava u pređašnje stanje.
 
 ```c++
-auto xUndo = Undo<int>(3); // x = 3
+auto intUndo = Undo<int>(3); // x = 3
 
 /* uzimamo referencu na nas broj */
-const int &xRef = xUndo.current();
-cout << xRef << '\n';
+const int &ref = intUndo.current();
+cout << ref << '\n';
 
 /* Izmene broja vrsimo posredstvom akcija */
-xUndo.action([](int &x) { x++; });
-xUndo.action([](int &x) { x = 25; });
-cout << xRef << '\n';
+intUndo.action([](int &x) { x++; });
+intUndo.action([](int &x) { x = 25; });
+cout << ref << '\n';
 
-xUndo.undo(); // vracamo se korak unazad
-cout << xRef << '\n';
+intUndo.undo(); // vracamo se korak unazad
+cout << ref << '\n';
 
-xUndo.redo(); // idemo korak unapred
-cout << xRef << '\n';
+intUndo.redo(); // idemo korak unapred
+cout << ref << '\n';
 
-xUndo.undo(); // vracamo se korak unazad
-cout << xRef << '\n';
+intUndo.undo(); // vracamo se korak unazad
+cout << ref << '\n';
 
-xUndo.undo(); // vracamo se korak unazad
-cout << xRef << '\n';
+intUndo.undo(); // vracamo se korak unazad
+cout << ref << '\n';
 ```
 ```
 3

@@ -3,51 +3,53 @@
 
 int main()
 {
-    rs::Undo<int> intHist(2);
-    std::cout << intHist.current() << '\n'; 
+    rs::Undo<int> intUndo(2);
+    const int &ref = intUndo.current();
+    std::cout << ref << '\n'; 
 
-    auto [succ0, nextSucc0] = intHist.undo();
-    std::cout << "[" << succ0 << "," << nextSucc0 << "] <- " << intHist.current() << '\n'; 
+    auto [succ0, nextSucc0] = intUndo.undo();
+    std::cout << "[" << succ0 << "," << nextSucc0 << "] <- " << ref << '\n'; 
 
+    std::cout << ref << '\n'; 
 
-    intHist.action([](int &x) {x++;});
-    std::cout << intHist.current() << '\n'; 
+    intUndo.action([](int &x) {x++;});
+    std::cout << ref << '\n'; 
 
-    auto [succ1, nextSucc1] = intHist.redo();
-    std::cout << "[" << succ1 << "," << nextSucc1 << "] <- " << intHist.current() << '\n'; 
+    auto [succ1, nextSucc1] = intUndo.redo();
+    std::cout << "[" << succ1 << "," << nextSucc1 << "] <- " << ref << '\n'; 
 
-    auto [succ2, nextSucc2] = intHist.undo();
-    std::cout << "[" << succ2 << "," << nextSucc2 << "] <- " << intHist.current() << '\n'; 
+    auto [succ2, nextSucc2] = intUndo.undo();
+    std::cout << "[" << succ2 << "," << nextSucc2 << "] <- " << ref << '\n'; 
 
-    auto [succ3, nextSucc3] = intHist.redo();
-    std::cout << "[" << succ3 << "," << nextSucc3 << "] <- " << intHist.current() << '\n'; 
+    auto [succ3, nextSucc3] = intUndo.redo();
+    std::cout << "[" << succ3 << "," << nextSucc3 << "] <- " << ref << '\n'; 
 
-    //auto [succ4, nextSucc4] = intHist.undo();
-    //std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << intHist.current() << '\n'; 
+    //auto [succ4, nextSucc4] = intUndo.undo();
+    //std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << ref << '\n'; 
 
-    intHist.action([](int &x) {x = 333; });
-    std::cout << intHist.current() << '\n'; 
+    intUndo.action([](int &x) {x = 333; });
+    std::cout << ref << '\n'; 
 
-    intHist.action([](int &x) {x = 444; });
-    std::cout << intHist.current() << '\n'; 
+    intUndo.action([](int &x) {x = 444; });
+    std::cout << ref << '\n'; 
 
-    auto [succ5, nextSucc5] = intHist.redo();
-    std::cout << "[" << succ5 << "," << nextSucc5 << "] <- " << intHist.current() << '\n'; 
+    auto [succ5, nextSucc5] = intUndo.redo();
+    std::cout << "[" << succ5 << "," << nextSucc5 << "] <- " << ref << '\n'; 
 
-    intHist.action([](int &x) {x = 222; });
-    std::cout << intHist.current() << '\n'; 
+    intUndo.action([](int &x) {x = 222; });
+    std::cout << ref << '\n'; 
 
     for (bool has_more = true; has_more;) {
-        auto [succ6, nextSucc6] = intHist.undo();
-        std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << intHist.current() << '\n'; 
+        auto [succ6, nextSucc6] = intUndo.undo();
+        std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << ref << '\n'; 
         has_more = nextSucc6;
     }
 
-    std::cout << intHist.current() << '\n'; 
+    std::cout << ref << '\n'; 
 
     for (bool has_more = true; has_more;) {
-        auto [succ6, nextSucc6] = intHist.redo();
-        std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << intHist.current() << '\n'; 
+        auto [succ6, nextSucc6] = intUndo.redo();
+        std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << ref << '\n'; 
         has_more = nextSucc6;
     }
 
