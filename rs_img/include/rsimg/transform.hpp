@@ -6,8 +6,7 @@
 #include <vector>
 
 #define RS_ACCEPT_TRANSFORM_VISITOR \
-virtual void accept(rs::visitor::TransformVisitor &visitor) const  override { \
-    base_type::accept(visitor); \
+virtual void acceptImpl(rs::visitor::TransformVisitor &visitor) const  override { \
     visitor.visit(*this); \
 }
 
@@ -37,10 +36,7 @@ namespace visitor {
 class TransformVisitor {
     friend class rs::Transform;
     RS_TRANSFORMS(friend class rs::,;)
-public:
-    bool isVisited() const { return m_isVisited; }
 private:
-    bool m_isVisited = false;
     RS_PURE_DECLARE_VISITORS
 };
 } // ns visitor
@@ -61,7 +57,7 @@ public:
         return tform.applyImpl(copy);
     }
 
-    virtual void accept(visitor::TransformVisitor &visitor) const { visitor.m_isVisited = true; }
+    virtual void accept(visitor::TransformVisitor &visitor) const { this->acceptImpl(visitor); }
 
     virtual std::unique_ptr<Transform> clone() const { 
         return std::unique_ptr<Transform>(this->cloneImpl()); 
@@ -72,6 +68,7 @@ protected:
     using base_type = Transform;
 
 private:
+    virtual void acceptImpl(visitor::TransformVisitor &visitor) const = 0;
     virtual Transform* cloneImpl() const = 0;
     virtual Image& applyImpl(Image &) const = 0;
 };

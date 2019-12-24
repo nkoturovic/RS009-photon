@@ -24,7 +24,7 @@ int main()
 
     auto strVisitor = rs::visitor::toString(t);
     
-    std::cout << strVisitor.isVisited() << '\n' << strVisitor.result() << '\n';
+    std::cout << strVisitor.result() << '\n';
 
     std::string str = rs::visitor::toString(rs::Crop(0, 0, 200, 200));
     std::cout << str << '\n';
