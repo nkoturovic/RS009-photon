@@ -1,6 +1,8 @@
 #include <iostream>
 #include "../undo.hpp"
 
+int add3(int &x) { return x+=3; }
+
 int main()
 {
     rs::Undo<int> intUndo(2);
@@ -9,11 +11,10 @@ int main()
 
     auto [succ0, nextSucc0] = intUndo.undo();
     std::cout << "[" << succ0 << "," << nextSucc0 << "] <- " << ref << '\n'; 
-
     std::cout << ref << '\n'; 
 
-    
-    intUndo.action({[](int &x) { return x++; }});
+    intUndo.action(add3);
+    intUndo.action([](int &x) { return x++; });
     std::cout << ref << '\n'; 
 
     auto [succ1, nextSucc1] = intUndo.redo();
@@ -25,19 +26,19 @@ int main()
     auto [succ3, nextSucc3] = intUndo.redo();
     std::cout << "[" << succ3 << "," << nextSucc3 << "] <- " << ref << '\n'; 
 
-    // auto [succ4, nextSucc4] = intUndo.undo();
-    // std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << ref << '\n'; 
+    auto [succ4, nextSucc4] = intUndo.undo();
+    std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << ref << '\n'; 
 
-    intUndo.action({[](int &x) {x = 333; }});
+    intUndo.action([](int &x) {x = 333; });
     std::cout << ref << '\n'; 
 
-    intUndo.action({[](int &x) {x = 444; }});
+    intUndo.action([](int &x) {x = 444; });
     std::cout << ref << '\n'; 
 
     auto [succ5, nextSucc5] = intUndo.redo();
     std::cout << "[" << succ5 << "," << nextSucc5 << "] <- " << ref << '\n'; 
 
-    intUndo.action({[](int &x) {x = 222; }});
+    intUndo.action([](int &x) {x = 222; });
     std::cout << ref << '\n'; 
 
     for (bool has_more = true; has_more;) {

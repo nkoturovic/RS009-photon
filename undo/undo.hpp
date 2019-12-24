@@ -65,7 +65,11 @@ void Undo<X,Action>::action(T && action) {
     m_previous = m_current;
     action(m_current);
 
-    m_previousActions = m_previousActions.push_back(std::make_shared<T>(std::forward<T>(action)));
+    if constexpr (std::is_base_of<Action, T>::value) {
+        m_previousActions = m_previousActions.push_back(std::make_shared<T>(std::forward<T>(action)));
+    } else {
+        m_previousActions = m_previousActions.push_back(std::make_shared<Action>(std::forward<T>(action)));
+    }
 
     m_next = {};
     m_nextActions = {};
@@ -114,7 +118,7 @@ std::pair<bool, bool> Undo<X, Action>::undo() {
                                     return origin;
                                 });
         } else {
-           // m_previous = {};
+           m_previous = {};
         }
 
         return { true, hasPrev };
@@ -151,7 +155,7 @@ std::pair<bool, bool> Undo<X, Action>::redo() {
                                 return curr;
                             });
     } else {
-        //m_next = {};
+        m_next = {};
     }
 
     return { true, hasNext };
