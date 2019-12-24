@@ -35,7 +35,7 @@ int main()
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
 
-    rs::visitor::toString toStr;
+    rs::visitor::ToString toStr;
 
     for (const auto &t : imgUndo.previousActions())
         std::cout << toStr(*t) << '\n'; 

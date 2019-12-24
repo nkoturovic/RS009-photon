@@ -5,7 +5,7 @@
 
 namespace rs::visitor {
 
-class toString : public TransformVisitor {
+class ToString : public TransformVisitor {
 public:
     std::string operator()(const rs::Transform &t) { t.accept(*this); return m_result_str; }
     std::string result() { return m_result_str; }

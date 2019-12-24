@@ -22,9 +22,9 @@ int main()
                       * rs::Contrast(30)
                       * rs::BlackNWhite();
 
-    std::cout << rs::visitor::toString()(t) << '\n';
+    std::cout << rs::visitor::ToString()(t) << '\n';
 
-    rs::visitor::toString toStr;
+    rs::visitor::ToString toStr;
     std::cout << toStr(t) << '\n';
 
     std::string str = toStr(rs::Crop(0, 0, 200, 200));

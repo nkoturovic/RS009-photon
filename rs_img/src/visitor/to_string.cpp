@@ -4,37 +4,37 @@ std::string rounded(std::string str) { return str.substr(0, str.find(".")); };
 
 namespace rs::visitor {
 
-void toString::visit(const rs::Composition &comp) {
-    toString toStr;
+void ToString::visit(const rs::Composition &comp) {
+    ToString toStr;
     std::string fst = toStr(comp.firstTransform());
     std::string snd = toStr(comp.secondTransform());
 
     m_result_str = "Composition(" + fst + "," + snd + ")";
 }
 
-void toString::visit(const rs::Rotate &rot) {
+void ToString::visit(const rs::Rotate &rot) {
     m_result_str = "Rotate(";
     m_result_str += rot.direction() == rs::Rotate::Direction::LEFT ? "LEFT" : "RIGHT";
     m_result_str += ")";
 }
 
-void toString::visit(const rs::Flip &flp) {
+void ToString::visit(const rs::Flip &flp) {
     m_result_str = "Flip(";
     m_result_str += flp.axis() == rs::Flip::Axis::X ? "X" : "Y";
     m_result_str += ")";
 }
 
-void toString::visit(const rs::BlackNWhite &) {
+void ToString::visit(const rs::BlackNWhite &) {
     m_result_str = "B&W";
 }
-void toString::visit(const rs::Brightness &br) {
+void ToString::visit(const rs::Brightness &br) {
     m_result_str = "Brightness(" + rounded(std::to_string(br.percents())) + ")";
 }
 
-void toString::visit(const rs::Contrast &ct) {
+void ToString::visit(const rs::Contrast &ct) {
     m_result_str = "Contrast(" + rounded(std::to_string(ct.percents())) + ")";
 }
-void toString::visit(const rs::Crop &cr) {
+void ToString::visit(const rs::Crop &cr) {
 
     m_result_str = "Crop(" +
                    rounded(std::to_string(cr.x()))
