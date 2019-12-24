@@ -7,8 +7,6 @@
 #include <iostream>
 #include <vector>
 
-#include <immer/vector.hpp>
-
 namespace rs {
 
 template <class X, class Action = std::function<void(X&)>>
@@ -19,20 +17,18 @@ public:
     const X& origin() const { return m_origin; }
     const X& current() const { return m_current; }
 
-    std::vector<std::reference_wrapper<const Action>> previousActions() const {
-        std::vector<std::reference_wrapper<const Action>> retval;
-        retval.reserve(m_previousActions.size());
-        for (const std::shared_ptr<Action>&a : m_previousActions)
-            retval.push_back(*a);
-        return retval;
+    std::vector<std::shared_ptr<const Action>> previousActions() const {
+        return std::vector<std::shared_ptr<const Action>>(
+                m_previousActions.cbegin(), 
+                m_previousActions.cend()
+        );
     }
 
-    std::vector<std::reference_wrapper<const Action>> nextActions() const {
-        std::vector<std::reference_wrapper<const Action>> retval;
-        retval.reserve(m_previousActions.size());
-        for (const std::shared_ptr<Action>&a : m_nextActions)
-            retval.push_back(*a);
-        return retval;
+    std::vector<std::shared_ptr<const Action>> nextActions() const {
+        return std::vector<std::shared_ptr<const Action>>(
+                m_nextActions.cbegin(), 
+                m_nextActions.cend()
+        );
     }
 
     template <class T = Action>
@@ -51,11 +47,11 @@ private:
     std::variant<X, std::future<X>> m_next;
 
     /* Actions that transform origin to current */
-    immer::vector<std::shared_ptr<Action>> m_previousActions;
+    std::vector<std::shared_ptr<Action>> m_previousActions;
 
     /* Transformations that were previously done 
      than undone - in reverse order (be cautious) */
-    immer::vector<std::shared_ptr<Action>> m_nextActions;
+    std::vector<std::shared_ptr<Action>> m_nextActions;
 };
 
 template <class X, class Action>
@@ -66,9 +62,9 @@ void Undo<X,Action>::action(T && action) {
     action(m_current);
 
     if constexpr (std::is_base_of<Action, T>::value) {
-        m_previousActions = m_previousActions.push_back(std::make_shared<T>(std::forward<T>(action)));
+        m_previousActions.push_back(std::make_shared<T>(std::forward<T>(action)));
     } else {
-        m_previousActions = m_previousActions.push_back(std::make_shared<Action>(std::forward<T>(action)));
+        m_previousActions.push_back(std::make_shared<Action>(std::forward<T>(action)));
     }
 
     m_next = {};
@@ -84,8 +80,8 @@ std::pair<bool, bool> Undo<X, Action>::undo() {
 
     /* Postoji bar jedna undo akcija */
     if (m_nextActions.empty()) {
-        m_nextActions = m_nextActions.push_back(m_previousActions.back());
-        m_previousActions = m_previousActions.take(m_previousActions.size()-1);
+        m_nextActions.push_back(m_previousActions.back());
+        m_previousActions.pop_back();
     }
 
     if (m_previousActions.empty()) {
@@ -106,14 +102,14 @@ std::pair<bool, bool> Undo<X, Action>::undo() {
             exit(EXIT_FAILURE);
         }
 
-        m_nextActions = m_nextActions.push_back(m_previousActions.back());
-        m_previousActions = m_previousActions.take(m_previousActions.size()-1);
+        m_nextActions.push_back(m_previousActions.back());
+        m_previousActions.pop_back();
 
         bool hasPrev = not m_previousActions.empty() || not m_originEqCurrent;
         if (hasPrev) {
             m_previous = std::async(std::launch::async, 
                                 [ origin  = m_origin,
-                                  actions = m_previousActions ] () mutable { 
+                                  actions = this->previousActions() ] () mutable { 
                                     for (const auto &a : actions) { (*a)(origin); } 
                                     return origin;
                                 });
@@ -142,9 +138,8 @@ std::pair<bool, bool> Undo<X, Action>::redo() {
         exit(EXIT_FAILURE);
     }
 
-    m_previousActions = m_previousActions.push_back(m_nextActions.back());
-    m_nextActions = m_nextActions.take(m_nextActions.size()-1);
-
+    m_previousActions.push_back(m_nextActions.back());
+    m_nextActions.pop_back();
 
     bool hasNext = not m_nextActions.empty();
 

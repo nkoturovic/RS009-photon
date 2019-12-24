@@ -60,12 +60,12 @@ int main()
     int x = 10;
     std::cout << x << '\n';
     for (const auto &f : intUndo.previousActions()) {
-        f(x);
+        f->operator()(x);
         std::cout << x << '\n';
     }
 
     for (const auto &f : intUndo.nextActions()) {
-        f(x);
+        f->operator()(x);
         std::cout << x << '\n';
     }
 
