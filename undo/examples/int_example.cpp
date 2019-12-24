@@ -12,7 +12,8 @@ int main()
 
     std::cout << ref << '\n'; 
 
-    intUndo.action([](int &x) {x++;});
+    
+    intUndo.action({[](int &x) { return x++; }});
     std::cout << ref << '\n'; 
 
     auto [succ1, nextSucc1] = intUndo.redo();
@@ -24,19 +25,19 @@ int main()
     auto [succ3, nextSucc3] = intUndo.redo();
     std::cout << "[" << succ3 << "," << nextSucc3 << "] <- " << ref << '\n'; 
 
-    //auto [succ4, nextSucc4] = intUndo.undo();
-    //std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << ref << '\n'; 
+    // auto [succ4, nextSucc4] = intUndo.undo();
+    // std::cout << "[" << succ4 << "," << nextSucc4 << "] <- " << ref << '\n'; 
 
-    intUndo.action([](int &x) {x = 333; });
+    intUndo.action({[](int &x) {x = 333; }});
     std::cout << ref << '\n'; 
 
-    intUndo.action([](int &x) {x = 444; });
+    intUndo.action({[](int &x) {x = 444; }});
     std::cout << ref << '\n'; 
 
     auto [succ5, nextSucc5] = intUndo.redo();
     std::cout << "[" << succ5 << "," << nextSucc5 << "] <- " << ref << '\n'; 
 
-    intUndo.action([](int &x) {x = 222; });
+    intUndo.action({[](int &x) {x = 222; }});
     std::cout << ref << '\n'; 
 
     for (bool has_more = true; has_more;) {
@@ -51,6 +52,20 @@ int main()
         auto [succ6, nextSucc6] = intUndo.redo();
         std::cout << "[" << succ6 << "," << nextSucc6 << "] <- " << ref << '\n'; 
         has_more = nextSucc6;
+    }
+
+    intUndo.undo();
+
+    int x = 10;
+    std::cout << x << '\n';
+    for (const auto &f : intUndo.previousActions()) {
+        f(x);
+        std::cout << x << '\n';
+    }
+
+    for (const auto &f : intUndo.nextActions()) {
+        f(x);
+        std::cout << x << '\n';
     }
 
     return 0;

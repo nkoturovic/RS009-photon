@@ -5,6 +5,7 @@
 #include "../../rs_img/include/rsimg/image.hpp"
 #include "../../rs_img/include/rsimg/exception.hpp"
 #include "../../rs_img/include/rsimg/transform.hpp"
+#include "../../rs_img/include/rsimg/visitor/to_string.hpp"
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    rs::Undo<rs::Image> imgUndo = rs::Undo<rs::Image>(std::move(img));
+    auto imgUndo = rs::Undo<rs::Image, rs::Transform>(std::move(img));
     const rs::Image &imgRef = imgUndo.current();
 
     rs::stdisp.show(imgRef);
@@ -33,6 +34,9 @@ int main()
 
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
+
+    for (const auto &t : imgUndo.previousActions())
+        std::cout << std::string(rs::visitor::toString(t));
 
     auto [succ, succNextUndo] = imgUndo.undo();
     std::cout << succ << ' ' << succNextUndo << '\n';
@@ -74,7 +78,6 @@ int main()
 
     auto [succ6, succNextUndo6] = imgUndo.redo();
     std::cout << succ6 << ' ' << succNextUndo6 << '\n';
-
 
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();

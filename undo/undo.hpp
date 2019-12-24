@@ -5,6 +5,7 @@
 #include <numeric>
 #include <variant>
 #include <iostream>
+#include <vector>
 
 #include <immer/vector.hpp>
 
@@ -17,10 +18,25 @@ public:
 
     const X& origin() const { return m_origin; }
     const X& current() const { return m_current; }
-    immer::vector<Action> previousActions() const { return m_previousActions; }
-    immer::vector<Action> nextActions() const { return m_nextActions; }
 
-    void action(Action && action);
+    std::vector<std::reference_wrapper<const Action>> previousActions() const {
+        std::vector<std::reference_wrapper<const Action>> retval;
+        retval.reserve(m_previousActions.size());
+        for (const std::shared_ptr<Action>&a : m_previousActions)
+            retval.push_back(*a);
+        return retval;
+    }
+
+    std::vector<std::reference_wrapper<const Action>> nextActions() const {
+        std::vector<std::reference_wrapper<const Action>> retval;
+        retval.reserve(m_previousActions.size());
+        for (const std::shared_ptr<Action>&a : m_nextActions)
+            retval.push_back(*a);
+        return retval;
+    }
+
+    template <class T = Action>
+    void action(T && action);
 
     // retval = [ currSucc, willNextSucceed ]
     std::pair <bool, bool> undo();
@@ -35,20 +51,21 @@ private:
     std::variant<X, std::future<X>> m_next;
 
     /* Actions that transform origin to current */
-    immer::vector<Action> m_previousActions;
+    immer::vector<std::shared_ptr<Action>> m_previousActions;
 
     /* Transformations that were previously done 
      than undone - in reverse order (be cautious) */
-    immer::vector<Action> m_nextActions;
+    immer::vector<std::shared_ptr<Action>> m_nextActions;
 };
 
 template <class X, class Action>
-void Undo<X,Action>::action(Action && action) {
+template <class T>
+void Undo<X,Action>::action(T && action) {
     m_originEqCurrent = false;
     m_previous = m_current;
     action(m_current);
 
-    m_previousActions = m_previousActions.push_back(std::move(action));
+    m_previousActions = m_previousActions.push_back(std::make_shared<T>(std::forward<T>(action)));
 
     m_next = {};
     m_nextActions = {};
@@ -93,11 +110,11 @@ std::pair<bool, bool> Undo<X, Action>::undo() {
             m_previous = std::async(std::launch::async, 
                                 [ origin  = m_origin,
                                   actions = m_previousActions ] () mutable { 
-                                    for (const auto &a : actions) { a(origin); } 
+                                    for (const auto &a : actions) { (*a)(origin); } 
                                     return origin;
                                 });
         } else {
-            m_previous = {};
+           // m_previous = {};
         }
 
         return { true, hasPrev };
@@ -130,11 +147,11 @@ std::pair<bool, bool> Undo<X, Action>::redo() {
     if (hasNext) {
         m_next = std::async(std::launch::async, 
                             [action = m_nextActions.back(), curr=m_current] () mutable { 
-                                action(curr); 
+                                (*action)(curr); 
                                 return curr;
                             });
     } else {
-        m_next = {};
+        //m_next = {};
     }
 
     return { true, hasNext };
