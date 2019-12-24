@@ -5,8 +5,9 @@ std::string rounded(std::string str) { return str.substr(0, str.find(".")); };
 namespace rs::visitor {
 
 void toString::visit(const rs::Composition &comp) {
-    std::string fst = toString(comp.firstTransform());
-    std::string snd = toString(comp.secondTransform());
+    toString toStr;
+    std::string fst = toStr(comp.firstTransform());
+    std::string snd = toStr(comp.secondTransform());
 
     m_result_str = "Composition(" + fst + "," + snd + ")";
 }

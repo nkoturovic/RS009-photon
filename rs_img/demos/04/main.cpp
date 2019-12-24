@@ -22,11 +22,12 @@ int main()
                       * rs::Contrast(30)
                       * rs::BlackNWhite();
 
-    auto strVisitor = rs::visitor::toString(t);
-    
-    std::cout << strVisitor.result() << '\n';
+    std::cout << rs::visitor::toString()(t) << '\n';
 
-    std::string str = rs::visitor::toString(rs::Crop(0, 0, 200, 200));
+    rs::visitor::toString toStr;
+    std::cout << toStr(t) << '\n';
+
+    std::string str = toStr(rs::Crop(0, 0, 200, 200));
     std::cout << str << '\n';
 
     return 0;
