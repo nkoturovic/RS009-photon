@@ -5,14 +5,8 @@
 
 namespace rs::visitor {
 
-class ToString : public TransformVisitor {
-public:
-    std::string operator()(const rs::Transform &t) { t.accept(*this); return m_result_str; }
-    std::string result() { return m_result_str; }
-    operator std::string() { return this->result(); }
+class ToString : public TransformVisitor<std::string> {
     RS_DECLARE_VISITORS
-private:
-    std::string m_result_str;
 };
 
 } // ns rs

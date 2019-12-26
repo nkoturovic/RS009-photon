@@ -3,7 +3,7 @@ CXX = clang++
 OPENCV_CFLAGS := $(shell pkg-config opencv --cflags)
 OPENCV_LIBS := $(shell pkg-config opencv --libs)
 
-CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -g $(OPENCV_CFLAGS) -O3
+CXXFLAGS = -std=c++17 -Wall -Wextra -Wpedantic -Wno-unused-parameter -g $(OPENCV_CFLAGS) -O3
 LDLIBS = $(OPENCV_LIBS)
 SRC_DIR = src
 INCLUDE_DIR = include

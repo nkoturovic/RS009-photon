@@ -1,7 +1,7 @@
 PROGRAM1   = int_example.out
 PROGRAM2   = image_example.out
 CXX       = g++
-CXXFLAGS  = -g -std=c++2a -Wall -Wextra -Wpedantic -Iinclude -pthread -Wno-unused-parameter
+CXXFLAGS  = -g -std=c++17 -Wall -Wextra -Wpedantic -Iinclude -pthread -Wno-unused-parameter
 
 OPENCV_CFLAGS := $(shell pkg-config opencv --cflags)
 OPENCV_LIBS := $(shell pkg-config opencv --libs)

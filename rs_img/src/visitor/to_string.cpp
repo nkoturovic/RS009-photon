@@ -9,34 +9,36 @@ void ToString::visit(const rs::Composition &comp) {
     std::string fst = toStr(comp.firstTransform());
     std::string snd = toStr(comp.secondTransform());
 
-    m_result_str = "Composition(" + fst + "," + snd + ")";
+    result("Composition(" + fst + "," + snd + ")");
 }
 
 void ToString::visit(const rs::Rotate &rot) {
-    m_result_str = "Rotate(";
-    m_result_str += rot.direction() == rs::Rotate::Direction::LEFT ? "LEFT" : "RIGHT";
-    m_result_str += ")";
+    std::string tmp = "Rotate(";
+    tmp += rot.direction() == rs::Rotate::Direction::LEFT ? "LEFT" : "RIGHT";
+    tmp += ")";
+    result(std::move(tmp));
 }
 
 void ToString::visit(const rs::Flip &flp) {
-    m_result_str = "Flip(";
-    m_result_str += flp.axis() == rs::Flip::Axis::X ? "X" : "Y";
-    m_result_str += ")";
+    std::string tmp = "Flip(";
+    tmp += flp.axis() == rs::Flip::Axis::X ? "X" : "Y";
+    tmp += ")";
+    result(std::move(tmp));
 }
 
 void ToString::visit(const rs::BlackNWhite &) {
-    m_result_str = "B&W";
+    result("B&W");
 }
 void ToString::visit(const rs::Brightness &br) {
-    m_result_str = "Brightness(" + rounded(std::to_string(br.percents())) + ")";
+    result("Brightness(" + rounded(std::to_string(br.percents())) + ")");
 }
 
 void ToString::visit(const rs::Contrast &ct) {
-    m_result_str = "Contrast(" + rounded(std::to_string(ct.percents())) + ")";
+    result("Contrast(" + rounded(std::to_string(ct.percents())) + ")");
 }
 void ToString::visit(const rs::Crop &cr) {
 
-    m_result_str = "Crop(" +
+    result("Crop(" +
                    rounded(std::to_string(cr.x()))
                     + "," +
                    rounded(std::to_string(cr.y()))
@@ -44,6 +46,6 @@ void ToString::visit(const rs::Crop &cr) {
                    rounded(std::to_string(cr.width()))
                     + "," +
                    rounded(std::to_string(cr.height()))
-                    + ")";
+                    + ")");
 }
 } // ns rs
