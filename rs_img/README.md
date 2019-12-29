@@ -66,11 +66,14 @@ int main()
     {
         rs::Image img1("lena.png"); // may throw
 
+        /* Kompozicija u redosledu primene (f | g)(x) = g(f(x)) */
         img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
                | rs::Rotate(rs::Rotate::Direction::RIGHT)
                | rs::Contrast(50)
                | rs::BlackNWhite();
         
+        /* Klasicna kompozicija (f * g)(x) = f(g(x)) */
+        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
         rs::Image img2 = img1 << rs::Rotate(rs::Rotate::Direction::LEFT) 
                                * rs::Flip(rs::Flip::Axis::Y)
                                * rs::BlackNWhite();
