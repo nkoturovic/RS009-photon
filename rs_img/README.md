@@ -4,10 +4,12 @@
 
 ```c++
 #include <iostream>
+
 #include "rsimg/image.hpp"
 #include "rsimg/transform.hpp"
 #include "rsimg/display.hpp"
 #include "rsimg/exception.hpp"
+#include "rsimg/visitor/to_string.hpp"
 
 int main()
 {
@@ -20,12 +22,15 @@ int main()
                | rs::Rotate(rs::Rotate::Direction::RIGHT)
                | rs::Contrast(50)
                | rs::BlackNWhite();
+
+        /* Ispisivanje string reprezentacije transformacije */
+        rs::visitor::ToString()(rs::Rotate(rs::Rotate::Direction::LEFT));
         
+        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT);
         /* Klasicna kompozicija (f * g)(x) = f(g(x)) */
-        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
         rs::Image img2 = img1 << rs::Rotate(rs::Rotate::Direction::LEFT) 
                                * rs::Flip(rs::Flip::Axis::Y)
-                               * rs::BlackNWhite();
+                               * rs::Brightness(25);
 
         rs::stdisp.show(img2);
         rs::Display::waitKey();

@@ -27,7 +27,13 @@ BlackNWhite::BlackNWhite() { }
 
 Image& BlackNWhite::applyImpl(Image &img) const { 
     cv::Mat &imageRef = get_impl(img).m_image;
-    cv::cvtColor(imageRef, imageRef, cv::COLOR_BGR2GRAY );
+
+    try {
+        cv::cvtColor(imageRef, imageRef, cv::COLOR_BGR2GRAY );
+    } catch (const cv::Exception &) {
+        throw rs::Exception("Can not convert colors");
+    }
+
     return img;
 }
 
