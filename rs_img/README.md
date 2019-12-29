@@ -1,5 +1,47 @@
 # RS-IMG - Biblioteka za rad za slikama
 
+## Primer koriscenja biblioteke
+
+```c++
+#include <iostream>
+#include "rsimg/image.hpp"
+#include "rsimg/transform.hpp"
+#include "rsimg/display.hpp"
+#include "rsimg/exception.hpp"
+
+int main()
+{
+    try 
+    {
+        rs::Image img1("lena.png"); // may throw
+
+        /* Kompozicija u redosledu primene (f | g)(x) = g(f(x)) */
+        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
+               | rs::Rotate(rs::Rotate::Direction::RIGHT)
+               | rs::Contrast(50)
+               | rs::BlackNWhite();
+        
+        /* Klasicna kompozicija (f * g)(x) = f(g(x)) */
+        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
+        rs::Image img2 = img1 << rs::Rotate(rs::Rotate::Direction::LEFT) 
+                               * rs::Flip(rs::Flip::Axis::Y)
+                               * rs::BlackNWhite();
+
+        rs::stdisp.show(img2);
+        rs::Display::waitKey();
+
+        img2.write("output.png");
+
+    } catch (const rs::Exception &e) 
+    {
+        std::cerr << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return 0;
+}
+```
+
 ## O Biblioteci
 
 Biblioteka je napisana kao integralni deo projekta `Photon`:
@@ -49,46 +91,4 @@ main.o: main.cpp
 
 clean:
 	rm -rf *.out *.o
-```
-
-## Primer koriscenja biblioteke
-
-```c++
-#include <iostream>
-#include "rsimg/image.hpp"
-#include "rsimg/transform.hpp"
-#include "rsimg/display.hpp"
-#include "rsimg/exception.hpp"
-
-int main()
-{
-    try 
-    {
-        rs::Image img1("lena.png"); // may throw
-
-        /* Kompozicija u redosledu primene (f | g)(x) = g(f(x)) */
-        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
-               | rs::Rotate(rs::Rotate::Direction::RIGHT)
-               | rs::Contrast(50)
-               | rs::BlackNWhite();
-        
-        /* Klasicna kompozicija (f * g)(x) = f(g(x)) */
-        img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
-        rs::Image img2 = img1 << rs::Rotate(rs::Rotate::Direction::LEFT) 
-                               * rs::Flip(rs::Flip::Axis::Y)
-                               * rs::BlackNWhite();
-
-        rs::stdisp.show(img2);
-        rs::Display::waitKey();
-
-        img2.write("output.png");
-
-    } catch (const rs::Exception &e) 
-    {
-        std::cerr << e.what() << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    return 0;
-}
 ```
