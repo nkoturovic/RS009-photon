@@ -67,7 +67,9 @@ int main()
         rs::Image img1("lena.png"); // may throw
 
         img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT) 
-               * rs::Rotate(rs::Rotate::Direction::RIGHT);
+               | rs::Rotate(rs::Rotate::Direction::RIGHT)
+               | rs::Contrast(50)
+               | rs::BlackNWhite();
         
         rs::Image img2 = img1 << rs::Rotate(rs::Rotate::Direction::LEFT) 
                                * rs::Flip(rs::Flip::Axis::Y)

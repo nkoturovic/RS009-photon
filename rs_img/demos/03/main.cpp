@@ -17,7 +17,9 @@ int main()
     }
 
     img1 <<= rs::Contrast(100)
-          * rs::Brightness(-50);
+           | rs::Brightness(-50)
+           | rs::Rotate(rs::Rotate::Direction::LEFT)
+           | rs::Flip(rs::Flip::Axis::X);
 
     auto img2 = img1;
     img1 <<= rs::Rotate(rs::Rotate::Direction::RIGHT);

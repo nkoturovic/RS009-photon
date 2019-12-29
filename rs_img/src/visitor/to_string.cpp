@@ -48,4 +48,9 @@ void ToString::visit(const rs::Crop &cr) {
                    rounded(std::to_string(cr.height()))
                     + ")");
 }
+
+void ToString::otherwise(const rs::Transform &cr) {
+    result("Other transformation");
+}
+
 } // ns rs

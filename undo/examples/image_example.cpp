@@ -24,7 +24,7 @@ int main()
     rs::stdisp.show(imgRef);
     rs::Display::waitKey();
 
-    imgUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT) *
+    imgUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT) |
                    rs::Rotate(rs::Rotate::Direction::RIGHT));
 
     rs::stdisp.show(imgRef);
