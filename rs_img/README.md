@@ -26,7 +26,6 @@ int main()
         /* Ispisivanje string reprezentacije transformacije */
         rs::visitor::ToString()(rs::Rotate(rs::Rotate::Direction::LEFT));
 
-
         /* Posetilac za ispisivanje informacija na stdout */
         class PrintInfo : public rs::ConstTransformVisitor {
             void visit(const rs::Contrast &c) {
