@@ -25,6 +25,23 @@ int main()
 
         /* Ispisivanje string reprezentacije transformacije */
         rs::visitor::ToString()(rs::Rotate(rs::Rotate::Direction::LEFT));
+
+
+        /* Posetilac za ispisivanje informacija na stdout */
+        class PrintInfo : public rs::ConstTransformVisitor {
+            void visit(const rs::Contrast &c) {
+                std::cout << "This transformation changes "
+                          << "contrast for " << c.percents()
+                          << " percents\n";
+            }
+            void otherwise(const rs::Transform &) {
+                std::cout << "Effect of this transformation is unknown\n";
+            }
+        } printInfo;
+
+        /* Ispisivanje informacija na stdout */
+        printInfo(rs::Contrast(25));  // known visit(Contrast)
+        printInfo(rs::BlackNWhite()); // unknown (otherwise)
         
         img1 <<= rs::Rotate(rs::Rotate::Direction::LEFT);
         /* Klasicna kompozicija (f * g)(x) = f(g(x)) */
