@@ -19,4 +19,9 @@ void Image::write(std::string image_path) {
     this->impl().write(std::move(image_path));
 }
 
+size_t Image::width() const {return this->impl().width();}
+size_t Image::height() const {return this->impl().height();}
+const unsigned char * Image::data() {return this->impl().data();}
+
+
 } // namespace rs

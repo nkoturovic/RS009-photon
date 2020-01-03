@@ -45,7 +45,20 @@ void Image::ImageImpl::swap(Image::ImageImpl &other) {
 }
 
 void Image::ImageImpl::ImageImpl::write(std::string image_path) {
-    cv::imwrite( image_path, m_image );
+    cv::imwrite(image_path, m_image);
 }
+
+size_t Image::ImageImpl::width() const {
+    return this->m_image.cols;
+}
+
+size_t Image::ImageImpl::height() const {
+    return this->m_image.rows;
+}
+
+const unsigned char * Image::ImageImpl::data() {
+    return this->m_image.data;
+}
+
 
 } // namespace rs

@@ -13,8 +13,7 @@ struct Image::ImageImpl {
     cv::Mat m_image;
     ImageImpl();
     ImageImpl(std::string &&image_path);
-    void write(std::string image_path);
-
+    
     ImageImpl(const ImageImpl&);
     ImageImpl(ImageImpl &&);
     
@@ -22,6 +21,11 @@ struct Image::ImageImpl {
     ImageImpl& operator=(ImageImpl &&);
 
     void swap(ImageImpl &);
+
+    void write(std::string image_path);
+    size_t width() const;
+    size_t height() const;
+    const unsigned char * data();
 };
 
 } // namespace rs

@@ -21,6 +21,10 @@ public:
     Image();
     ~Image();
 
+    size_t width() const;  
+    size_t height() const; 
+    const unsigned char * data();
+
     void write(std::string image_path);
 };
 
