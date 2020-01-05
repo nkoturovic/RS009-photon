@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>photon_main</class>
+ <widget class="QMainWindow" name="photon_main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>934</width>
+    <height>619</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Photon</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color: #1b2a49;
+	color: white;
+}</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="efekti_frame">
+    <property name="geometry">
+     <rect>
+      <x>698</x>
+      <y>6</y>
+      <width>230</width>
+      <height>554</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>230</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="osvetljenje_kontrast">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>211</width>
+       <height>171</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+	background-color: #465881;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QSlider" name="osvetljenje_slider">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>SizeHorCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSlider{
+	Color: #00909e;
+}</string>
+      </property>
+      <property name="value">
+       <number>50</number>
+      </property>
+      <property name="tracking">
+       <bool>true</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="invertedControls">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="osvetljenje">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Verdana</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Osvetljenje</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="kontrast">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Verdana</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Kontrast</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QSlider" name="kontrast_slider">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>SizeHorCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QSlider{
+	Color: #00909e;
+}</string>
+      </property>
+      <property name="value">
+       <number>50</number>
+      </property>
+      <property name="sliderPosition">
+       <number>50</number>
+      </property>
+      <property name="tracking">
+       <bool>true</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="invertedControls">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="primeni">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>130</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Primeni</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="rotacija_obrtanje">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>211</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+	background-color: #465881;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QLabel" name="rotacija">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Verdana</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Rotacija</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="obrni_x">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Obrni (x-osa)</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="obrni_y">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>90</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Obrni (y-osa)</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="minus_90">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>-90°</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="plus_90">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>+90°</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="plus_180">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>20</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>180°</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="obrtanje_flip">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Verdana</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Obrtanje (flip)</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="efekti">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>330</y>
+       <width>211</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+	background-color: #465881;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="crno_belo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Crno-belo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="invertovanje">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>30</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Invertovanje</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="efekti_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Verdana</family>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Efekti</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="crno_belo_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color: #00909e;
+	color: white;
+}</string>
+      </property>
+      <property name="text">
+       <string>Filter-boja</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="ImageView" name="slika_glavno" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>681</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>934</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDatoteka">
+    <property name="title">
+     <string>Datoteka</string>
+    </property>
+    <addaction name="actionOtvori"/>
+    <addaction name="actionSnimi_sa_uvaj"/>
+    <addaction name="actionOd_tampaj"/>
+    <addaction name="actionPoni_ti_izmenu_undo"/>
+    <addaction name="actionVrati_izmenu_redo"/>
+    <addaction name="separator"/>
+    <addaction name="actionIza_i_iz_programa"/>
+   </widget>
+   <widget class="QMenu" name="menuTransformacije">
+    <property name="title">
+     <string>Transformacije</string>
+    </property>
+    <addaction name="actionRotacija"/>
+    <addaction name="actionObrtanje_flip"/>
+    <addaction name="actionObrtanje_y_osa"/>
+    <addaction name="actionSe_enje"/>
+   </widget>
+   <widget class="QMenu" name="menuEfekti">
+    <property name="title">
+     <string>Efekti</string>
+    </property>
+    <addaction name="actionOsvetljenje"/>
+    <addaction name="actionKontrast"/>
+    <addaction name="actionCrno_belo_B_W"/>
+    <addaction name="actionInvertovanje_boja"/>
+   </widget>
+   <widget class="QMenu" name="menuO_programu">
+    <property name="title">
+     <string>O programu</string>
+    </property>
+    <addaction name="actionPomo"/>
+    <addaction name="actionAutori"/>
+   </widget>
+   <addaction name="menuDatoteka"/>
+   <addaction name="menuTransformacije"/>
+   <addaction name="menuEfekti"/>
+   <addaction name="menuO_programu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOtvori">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/open.png</normaloff>:/pngs/icons/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Otvori</string>
+   </property>
+  </action>
+  <action name="actionSnimi_sa_uvaj">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/save.png</normaloff>:/pngs/icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Snimi/sačuvaj</string>
+   </property>
+  </action>
+  <action name="actionOd_tampaj">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/print.png</normaloff>:/pngs/icons/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Odštampaj</string>
+   </property>
+  </action>
+  <action name="actionIza_i_iz_programa">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/exit.png</normaloff>:/pngs/icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Izađi iz programa</string>
+   </property>
+  </action>
+  <action name="actionPoni_ti_izmenu_undo">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/undo.png</normaloff>:/pngs/icons/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Poništi izmenu (undo)</string>
+   </property>
+  </action>
+  <action name="actionVrati_izmenu_redo">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/redo.png</normaloff>:/pngs/icons/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Vrati izmenu (redo)</string>
+   </property>
+  </action>
+  <action name="actionRotacija">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/rotate.png</normaloff>:/pngs/icons/rotate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotacija</string>
+   </property>
+  </action>
+  <action name="actionObrtanje_flip">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/flip_x.png</normaloff>:/pngs/icons/flip_x.png</iconset>
+   </property>
+   <property name="text">
+    <string>Obrtanje (x-osa)</string>
+   </property>
+  </action>
+  <action name="actionSe_enje">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/crop.png</normaloff>:/pngs/icons/crop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sečenje</string>
+   </property>
+  </action>
+  <action name="actionCrno_belo_B_W">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/black_white.png</normaloff>:/pngs/icons/black_white.png</iconset>
+   </property>
+   <property name="text">
+    <string>Crno-belo (B/&amp;W)</string>
+   </property>
+  </action>
+  <action name="actionInvertovanje_boja">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/invert.png</normaloff>:/pngs/icons/invert.png</iconset>
+   </property>
+   <property name="text">
+    <string>Invertovanje boja</string>
+   </property>
+  </action>
+  <action name="actionOsvetljenje">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/brightness.png</normaloff>:/pngs/icons/brightness.png</iconset>
+   </property>
+   <property name="text">
+    <string>Osvetljenje</string>
+   </property>
+  </action>
+  <action name="actionKontrast">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/contrast.png</normaloff>:/pngs/icons/contrast.png</iconset>
+   </property>
+   <property name="text">
+    <string>Kontrast</string>
+   </property>
+  </action>
+  <action name="actionPomo">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/help.png</normaloff>:/pngs/icons/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pomoć</string>
+   </property>
+  </action>
+  <action name="actionAutori">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/authors2.png</normaloff>:/pngs/icons/authors2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Autori</string>
+   </property>
+  </action>
+  <action name="actionObrtanje_y_osa">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/flip_y.png</normaloff>:/pngs/icons/flip_y.png</iconset>
+   </property>
+   <property name="text">
+    <string>Obrtanje (y-osa)</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageView</class>
+   <extends>QWidget</extends>
+   <header>imageview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

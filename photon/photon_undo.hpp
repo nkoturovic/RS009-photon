@@ -10,6 +10,8 @@ public:
         this->updateQimg();
     }
 
+    PhotonUndo() : PhotonUndo(rs::Image()) {}
+
     const rs::Image& origin() const { return m_undo.origin(); }
     const rs::Image& current() const { return m_undo.current(); }
     QImage* qimagePtr() { return &m_qimage; }

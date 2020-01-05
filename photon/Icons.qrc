@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/pngs">
+        <file>icons/authors.png</file>
+        <file>icons/authors2.png</file>
+        <file>icons/black_white.png</file>
+        <file>icons/brightness.png</file>
+        <file>icons/contrast.png</file>
+        <file>icons/crop.png</file>
+        <file>icons/exit.png</file>
+        <file>icons/flip_x.png</file>
+        <file>icons/flip_y.png</file>
+        <file>icons/help.png</file>
+        <file>icons/invert.png</file>
+        <file>icons/open.png</file>
+        <file>icons/print.png</file>
+        <file>icons/redo.png</file>
+        <file>icons/rotate.png</file>
+        <file>icons/save.png</file>
+        <file>icons/undo.png</file>
+    </qresource>
+</RCC>
