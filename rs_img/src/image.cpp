@@ -22,7 +22,7 @@ void Image::write(std::string image_path) {
 size_t Image::width() const {return this->impl().width();}
 size_t Image::height() const {return this->impl().height();}
 size_t Image::step() const {return this->impl().step();}
-const unsigned char * Image::data() {return this->impl().data();}
+const unsigned char * Image::data() const {return this->impl().data();}
 
 
 } // namespace rs

@@ -60,7 +60,7 @@ size_t Image::ImageImpl::step() const {
     return this->m_image.step;
 }
 
-const unsigned char * Image::ImageImpl::data() {
+const unsigned char * Image::ImageImpl::data() const {
     return this->m_image.data;
 }
 

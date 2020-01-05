@@ -110,7 +110,7 @@ std::pair<bool, bool> Undo<X, Action>::undo() {
             m_previous = std::async(std::launch::async, 
                                 [ origin  = m_origin,
                                   actions = this->previousActions() ] () mutable { 
-                                    for (const auto &a : actions) { (*a)(origin); } 
+                                    for (const auto &a : actions) { a->operator()(origin); } 
                                     return origin;
                                 });
         } else {

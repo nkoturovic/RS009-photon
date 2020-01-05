@@ -26,7 +26,7 @@ struct Image::ImageImpl {
     size_t step() const;
     size_t width() const;
     size_t height() const;
-    const unsigned char * data();
+    const unsigned char * data() const;
 };
 
 } // namespace rs

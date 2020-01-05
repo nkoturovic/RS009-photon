@@ -24,7 +24,7 @@ public:
     size_t width() const;  
     size_t height() const; 
     size_t step() const; 
-    const unsigned char * data();
+    const unsigned char * data() const;
 
     void write(std::string image_path);
 };
