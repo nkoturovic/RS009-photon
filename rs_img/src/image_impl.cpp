@@ -18,7 +18,7 @@ Image::ImageImpl::ImageImpl(std::string &&image_path) {
     m_image = cv::imread( image_path, cv::IMREAD_COLOR );
     if( !m_image.data ){
         throw rs::Exception("Error reading image: " + image_path);
-    }
+     }
 }
 
 Image::ImageImpl::ImageImpl(const ImageImpl& other) : m_image(other.m_image.clone()) {
@@ -54,6 +54,10 @@ size_t Image::ImageImpl::width() const {
 
 size_t Image::ImageImpl::height() const {
     return this->m_image.rows;
+}
+
+size_t Image::ImageImpl::step() const {
+    return this->m_image.step;
 }
 
 const unsigned char * Image::ImageImpl::data() {
