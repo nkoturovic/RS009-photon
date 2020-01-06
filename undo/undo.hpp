@@ -31,6 +31,9 @@ public:
         );
     }
 
+    unsigned numOfPreviousActions() const { return m_previousActions.size(); }
+    unsigned numOfNextActions() const { return m_nextActions.size(); }
+
     template <class T = Action>
     void action(T && action);
 
