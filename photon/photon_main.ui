@@ -18,7 +18,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
-	background-color: #1b2a49;
+	background-color: #333333;
 	color: white;
 }</string>
   </property>
@@ -29,10 +29,10 @@
    <widget class="QFrame" name="efekti_frame">
     <property name="geometry">
      <rect>
-      <x>698</x>
-      <y>6</y>
+      <x>700</x>
+      <y>0</y>
       <width>230</width>
-      <height>554</height>
+      <height>551</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -50,9 +50,9 @@
     <widget class="QFrame" name="osvetljenje_kontrast">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>10</y>
-       <width>211</width>
+       <width>201</width>
        <height>171</height>
       </rect>
      </property>
@@ -84,8 +84,17 @@
 	Color: #00909e;
 }</string>
       </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="pageStep">
+       <number>10</number>
+      </property>
       <property name="value">
-       <number>50</number>
+       <number>0</number>
       </property>
       <property name="tracking">
        <bool>true</bool>
@@ -175,11 +184,17 @@
 	Color: #00909e;
 }</string>
       </property>
+      <property name="minimum">
+       <number>-100</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
       <property name="value">
-       <number>50</number>
+       <number>0</number>
       </property>
       <property name="sliderPosition">
-       <number>50</number>
+       <number>0</number>
       </property>
       <property name="tracking">
        <bool>true</bool>
@@ -217,9 +232,9 @@
     <widget class="QFrame" name="rotacija_obrtanje">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>190</y>
-       <width>211</width>
+       <width>201</width>
        <height>131</height>
       </rect>
      </property>
@@ -304,7 +319,7 @@
      <widget class="QPushButton" name="minus_90">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>20</y>
         <width>51</width>
         <height>31</height>
@@ -323,7 +338,7 @@
      <widget class="QPushButton" name="plus_90">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>20</y>
         <width>51</width>
         <height>31</height>
@@ -342,7 +357,7 @@
      <widget class="QPushButton" name="plus_180">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>20</y>
         <width>51</width>
         <height>31</height>
@@ -391,10 +406,10 @@
     <widget class="QFrame" name="efekti">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>330</y>
-       <width>211</width>
-       <height>111</height>
+       <width>201</width>
+       <height>211</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -502,7 +517,7 @@
       <x>10</x>
       <y>10</y>
       <width>681</width>
-      <height>431</height>
+      <height>441</height>
      </rect>
     </property>
    </widget>
