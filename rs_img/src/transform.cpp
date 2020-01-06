@@ -47,6 +47,20 @@ Image& Brightness::applyImpl(Image &img) const {
     return img;
 }
 
+Invert::Invert() { }
+
+Image& Invert::applyImpl(Image &img) const { 
+    cv::Mat &imageRef = get_impl(img).m_image;
+
+    try {
+        cv::bitwise_not(imageRef, imageRef);
+    } catch (const cv::Exception &) {
+        throw rs::Exception("Can not convert colors");
+    }
+
+    return img;
+}
+
 Contrast::Contrast(double percents) : m_percents(percents) {
 }
 

@@ -12,14 +12,16 @@ namespace rs {
 /* Deklaracije klasa */
 class Transform; class Composition; class Rotate; class Flip; 
 class BlackNWhite; class Brightness; class Contrast; class Crop;
+class Invert;
 
 #define TypeHierarchy Transform, Composition, Rotate, Flip, \
-                      BlackNWhite, Brightness, Contrast, Crop
+                      BlackNWhite, Brightness, Contrast, Crop, \
+                      Invert
 
 #define ConstTypeHierarchy const Transform, const Composition,\
                            const Rotate, const Flip,\
                            const BlackNWhite, const Brightness,\
-                           const Contrast, const Crop
+                           const Contrast, const Crop, const Invert
 
 /* 1) Vizitor bez rezultata (Ref verzija) */
 using TransformVisitor = impl::Visitor<TypeHierarchy>;
@@ -171,6 +173,18 @@ private:
     int m_x, m_y, m_width, m_height;
     virtual Image& applyImpl(Image &) const override;
 };
+
+class Invert : public impl::InheritVisitable<Invert,Transform,TypeHierarchy> {
+public:
+    Invert();
+private:
+
+    virtual Transform* cloneImpl() const override {
+        return new Invert(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
 
 Image& operator<<=(Image &img, const Transform& tr);
 Image operator<<(const Image &img, const Transform& tr);
