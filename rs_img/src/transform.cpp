@@ -30,6 +30,7 @@ Image& BlackNWhite::applyImpl(Image &img) const {
 
     try {
         cv::cvtColor(imageRef, imageRef, cv::COLOR_BGR2GRAY );
+        cv::cvtColor(imageRef, imageRef, cv::COLOR_GRAY2BGR );
     } catch (const cv::Exception &) {
         throw rs::Exception("Can not convert colors");
     }
