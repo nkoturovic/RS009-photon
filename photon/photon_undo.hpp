@@ -33,13 +33,16 @@ public:
         return retval;
     }
 
-    std::vector<std::shared_ptr<const rs::Transform>> previousTransformations() {
+    std::vector<std::shared_ptr<const rs::Transform>> previousActions() {
         return m_undo.previousActions();
     }
 
-    std::vector<std::shared_ptr<const rs::Transform>> nextTransformations() {
+    std::vector<std::shared_ptr<const rs::Transform>> nextActions() {
         return m_undo.nextActions();
     }
+
+    unsigned numOfPreviousActions() const { return m_undo.numOfPreviousActions(); }
+    unsigned numOfNextActions() const { return m_undo.numOfNextActions(); }
 
 private:
     ImageUndoType m_undo;
