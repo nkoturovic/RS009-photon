@@ -2,34 +2,34 @@
 #include <rsimg/image.hpp>
 #include <rsimg/transform.hpp>
 #include <QImage>
+#include "label_image.h"
 
 using ImageUndoType = rs::Undo<rs::Image, rs::Transform>;
 class PhotonUndo {
 public:
-    PhotonUndo(rs::Image &&img) : m_undo(std::move(img)) {
-        this->updateQimg();
+    PhotonUndo(rs::Image &&img, LabelImage* labelPtr) : m_undo(std::move(img)), m_labelPtr(labelPtr) {
+        this->updateLabel();
     }
 
-    PhotonUndo() : PhotonUndo(rs::Image()) {}
+    PhotonUndo() : PhotonUndo(rs::Image(), nullptr) {}
 
     const rs::Image& origin() const { return m_undo.origin(); }
     const rs::Image& current() const { return m_undo.current(); }
-    QImage* qimagePtr() { return &m_qimage; }
 
     template <class T>
     void action(T &&tform) {
         m_undo.action(std::forward<T>(tform));
-        this->updateQimg();
+        this->updateLabel();
     }
 
     std::pair<bool, bool> undo() { 
         auto retval = m_undo.undo(); 
-        this->updateQimg();
+        this->updateLabel();
         return retval;
     }
     std::pair<bool, bool> redo() {
         auto retval = m_undo.redo();
-        this->updateQimg();
+        this->updateLabel();
         return retval;
     }
 
@@ -46,10 +46,14 @@ public:
 
 private:
     ImageUndoType m_undo;
-    QImage m_qimage;
+    LabelImage *m_labelPtr;
 
-    void updateQimg() {
+    void updateLabel() {
+        if (m_labelPtr == nullptr)
+            return;
+
         const rs::Image &imgRef = this->current();
-        m_qimage = QImage(imgRef.data(), imgRef.width(), imgRef.height(), imgRef.step(), QImage::Format_BGR888);
+        QImage qimg = QImage(imgRef.data(), imgRef.width(), imgRef.height(), imgRef.step(), QImage::Format_BGR888);
+        m_labelPtr->setPixmap(QPixmap::fromImage(std::move(qimg)));
     }
 };

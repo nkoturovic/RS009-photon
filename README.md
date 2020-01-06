@@ -10,6 +10,7 @@
 - Miloš Krsmanović ([mi15263@alas.matf.bg.ac.rs](#))
 - Nebojša Koturović ([mi15139@alas.matf.bg.ac.rs](#))
 
+<img src="https://raw.githubusercontent.com/MATF-RS20/RS009-photon/master/images/cover.png" width="200" height="150">
 
 **Opis projekta:**
 

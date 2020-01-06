@@ -19,12 +19,14 @@ photon_main::~photon_main()
 void photon_main::on_actionOtvori_triggered()
 {
     QString nazivFajla = QFileDialog::getOpenFileName(this, "Otvorite fajl:");
-    //QFile fajl(nazivFajla);
+
+    // Ako je odabrano Cancel u dijalogu
+    if(nazivFajla.isEmpty() || nazivFajla.isNull())
+        return;
 
     try {
-        this->m_imageUndo = PhotonUndo(rs::Image(nazivFajla.toStdString()));
-        ui->slika_glavno->setImage(m_imageUndo.qimagePtr());
-        ui->slika_glavno->update();
+        this->m_imageUndo = PhotonUndo(rs::Image(nazivFajla.toStdString()), ui->slika);
+        ui->slika->update();
     }  catch (const rs::Exception &e) {
         std::cerr << e.what() << std::endl;
         exit(EXIT_FAILURE);
@@ -35,31 +37,31 @@ void photon_main::on_actionOtvori_triggered()
 void photon_main::on_actionRotacija_triggered()
 {
     m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionPoni_ti_izmenu_undo_triggered()
 {
     m_imageUndo.undo();
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionObrtanje_flip_triggered()    //obrtanje po X osi
 {
     m_imageUndo.action(rs::Flip(rs::Flip::Axis::X));
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionObrtanje_y_osa_triggered()   //obrtanje po Y osi
 {
     m_imageUndo.action(rs::Flip(rs::Flip::Axis::Y));
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionSe_enje_triggered()
 {
     m_imageUndo.action(rs::Crop(0,0,100,100));
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionOsvetljenje_triggered()
@@ -70,13 +72,13 @@ void photon_main::on_actionOsvetljenje_triggered()
 void photon_main::on_actionKontrast_triggered()
 {
     m_imageUndo.action(rs::Contrast(50)); //TODO kako uhvatiti podatak sa slajdera?
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionVrati_izmenu_redo_triggered()
 {
     m_imageUndo.redo();
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_actionIza_i_iz_programa_triggered()
@@ -88,7 +90,7 @@ void photon_main::on_primeni_clicked()  //primenjuje se osvetljenje i kontrast
 {
     m_imageUndo.action(rs::Brightness(ui->osvetljenje_slider->value()));
     m_imageUndo.action(rs::Contrast(ui->kontrast_slider->value()));
-    ui->slika_glavno->update();
+    ui->slika->update();
 }
 
 void photon_main::on_obrni_x_clicked()
