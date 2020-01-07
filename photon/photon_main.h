@@ -43,6 +43,20 @@ private slots:
 
     void on_actionSnimi_sa_uvaj_triggered();
 
+    void on_plus_180_clicked();
+
+    void on_plus_90_clicked();
+
+    void on_minus_90_clicked();
+
+    void on_obrni_y_clicked();
+
+    void on_invertovanje_clicked();
+
+    void on_crno_belo_clicked();
+
+    void on_actionOd_tampaj_triggered();
+
 private:
     Ui::photon_main *ui;
     PhotonUndo m_imageUndo;

@@ -2,6 +2,9 @@
 #include "ui_photon_main.h"
 #include <rsimg/exception.hpp>
 #include <QFileDialog>
+#include <QPrintDialog>
+#include <QPrinter>
+#include <QMessageBox>
 
 photon_main::photon_main(QWidget *parent)
     : QMainWindow(parent)
@@ -40,7 +43,7 @@ void photon_main::on_actionRotacija_triggered()
     ui->slika->update();
 }
 
-void photon_main::on_actionPoni_ti_izmenu_undo_triggered()
+void photon_main::on_actionPoni_ti_izmenu_undo_triggered()  //UNDO
 {
     m_imageUndo.undo();
     ui->slika->update();
@@ -60,7 +63,7 @@ void photon_main::on_actionObrtanje_y_osa_triggered()   //obrtanje po Y osi
 
 void photon_main::on_actionSe_enje_triggered()
 {
-    m_imageUndo.action(rs::Crop(0,0,100,100));
+    m_imageUndo.action(rs::Crop(0,0,100,100));          //TODO
     ui->slika->update();
 }
 
@@ -95,10 +98,60 @@ void photon_main::on_primeni_clicked()  //primenjuje se osvetljenje i kontrast
 
 void photon_main::on_obrni_x_clicked()
 {
-
+    m_imageUndo.action(rs::Flip(rs::Flip::Axis::X));
+    ui->slika->update();
 }
 
 void photon_main::on_actionSnimi_sa_uvaj_triggered()
 {
     QString nazivFajla = QFileDialog::getSaveFileName(this, "Sačuvaj kao");
+}
+
+void photon_main::on_plus_180_clicked()
+{
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    ui->slika->update();
+}
+
+void photon_main::on_plus_90_clicked()
+{
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT));
+    ui->slika->update();
+}
+
+void photon_main::on_minus_90_clicked()
+{
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    ui->slika->update();
+}
+
+void photon_main::on_obrni_y_clicked()
+{
+    m_imageUndo.action(rs::Flip(rs::Flip::Axis::Y));
+    ui->slika->update();
+}
+
+void photon_main::on_invertovanje_clicked()
+{
+    m_imageUndo.action(rs::Invert());
+    ui->slika->update();
+}
+
+void photon_main::on_crno_belo_clicked()
+{
+    m_imageUndo.action(rs::BlackNWhite());
+    ui->slika->update();
+}
+
+void photon_main::on_actionOd_tampaj_triggered()
+{
+    QPrinter stampac1;
+        stampac1.setPrinterName("Naziv stampaca");
+        QPrintDialog dialog(&stampac1,this);
+        if(dialog.exec() == QDialog::Rejected){
+            QMessageBox::warning(this,"Upozorenje","Nije moguce pristupiti stampacu");
+            return;
+        }
+        //ui->slika->print(&stampac1);
 }
