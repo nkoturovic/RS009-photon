@@ -90,10 +90,11 @@ void photon_main::on_actionIza_i_iz_programa_triggered()
 }
 
 void photon_main::on_primeni_clicked()  //primenjuje se osvetljenje i kontrast
-{
+{/*
     m_imageUndo.action(rs::Brightness(ui->osvetljenje_slider->value()));
     m_imageUndo.action(rs::Contrast(ui->kontrast_slider->value()));
     ui->slika->update();
+    */
 }
 
 void photon_main::on_obrni_x_clicked()
@@ -154,4 +155,16 @@ void photon_main::on_actionOd_tampaj_triggered()
             return;
         }
         //ui->slika->print(&stampac1);
+}
+
+void photon_main::on_actionCrno_belo_B_W_triggered()
+{
+    m_imageUndo.action(rs::BlackNWhite());
+    ui->slika->update();
+}
+
+void photon_main::on_actionInvertovanje_boja_triggered()
+{
+    m_imageUndo.action(rs::Invert());
+    ui->slika->update();
 }
