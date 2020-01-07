@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>Photon</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="logo.qrc">
+    <normaloff>:/logo/logo/logo_small.png</normaloff>:/logo/logo/logo_small.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
 	background-color: #333333;
@@ -296,6 +300,9 @@
    <property name="text">
     <string>Otvori</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionSnimi_sa_uvaj">
    <property name="icon">
@@ -304,6 +311,9 @@
    </property>
    <property name="text">
     <string>Snimi/sačuvaj</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionOd_tampaj">
@@ -314,6 +324,9 @@
    <property name="text">
     <string>Odštampaj</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionIza_i_iz_programa">
    <property name="icon">
@@ -322,6 +335,9 @@
    </property>
    <property name="text">
     <string>Izađi iz programa</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
    </property>
   </action>
   <action name="actionPoni_ti_izmenu_undo">
@@ -332,6 +348,9 @@
    <property name="text">
     <string>Poništi izmenu (undo)</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
   </action>
   <action name="actionVrati_izmenu_redo">
    <property name="icon">
@@ -340,6 +359,9 @@
    </property>
    <property name="text">
     <string>Vrati izmenu (redo)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
    </property>
   </action>
   <action name="actionRotacija">
@@ -350,6 +372,9 @@
    <property name="text">
     <string>Rotacija</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="actionObrtanje_flip">
    <property name="icon">
@@ -358,6 +383,9 @@
    </property>
    <property name="text">
     <string>Obrtanje (x-osa)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+X</string>
    </property>
   </action>
   <action name="actionSe_enje">
@@ -368,6 +396,9 @@
    <property name="text">
     <string>Sečenje</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
+   </property>
   </action>
   <action name="actionCrno_belo_B_W">
    <property name="icon">
@@ -376,6 +407,9 @@
    </property>
    <property name="text">
     <string>Crno-belo (B/&amp;W)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="actionInvertovanje_boja">
@@ -386,6 +420,9 @@
    <property name="text">
     <string>Invertovanje boja</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
   </action>
   <action name="actionOsvetljenje">
    <property name="icon">
@@ -394,6 +431,9 @@
    </property>
    <property name="text">
     <string>Osvetljenje</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
    </property>
   </action>
   <action name="actionKontrast">
@@ -404,6 +444,9 @@
    <property name="text">
     <string>Kontrast</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
+   </property>
   </action>
   <action name="actionPomo">
    <property name="icon">
@@ -413,14 +456,20 @@
    <property name="text">
     <string>Pomoć</string>
    </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
   </action>
   <action name="actionAutori">
    <property name="icon">
-    <iconset resource="Icons.qrc">
-     <normaloff>:/pngs/icons/authors2.png</normaloff>:/pngs/icons/authors2.png</iconset>
+    <iconset resource="logo.qrc">
+     <normaloff>:/logo/logo/logo_small.png</normaloff>:/logo/logo/logo_small.png</iconset>
    </property>
    <property name="text">
     <string>Autori</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
   <action name="actionObrtanje_y_osa">
@@ -430,6 +479,9 @@
    </property>
    <property name="text">
     <string>Obrtanje (y-osa)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Y</string>
    </property>
   </action>
  </widget>
@@ -442,6 +494,8 @@
  </customwidgets>
  <resources>
   <include location="Icons.qrc"/>
+  <include location="logo.qrc"/>
+  <include location="logo.qrc"/>
  </resources>
  <connections/>
 </ui>

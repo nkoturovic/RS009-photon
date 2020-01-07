@@ -5,6 +5,8 @@
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QMessageBox>
+#include "brightnessdialog.h"
+#include "contrastdialog.h"
 
 photon_main::photon_main(QWidget *parent)
     : QMainWindow(parent)
@@ -69,13 +71,14 @@ void photon_main::on_actionSe_enje_triggered()
 
 void photon_main::on_actionOsvetljenje_triggered()
 {
-//TODO
+    brightnessDialog b;
+    b.show();
 }
 
 void photon_main::on_actionKontrast_triggered()
 {
-    m_imageUndo.action(rs::Contrast(50)); //TODO kako uhvatiti podatak sa slajdera?
-    ui->slika->update();
+    contrastDialog c;
+    c.show();
 }
 
 void photon_main::on_actionVrati_izmenu_redo_triggered()

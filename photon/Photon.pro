@@ -16,16 +16,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    brightnessdialog.cpp \
+    contrastdialog.cpp \
     label_image.cpp \
     main.cpp \
     photon_main.cpp
 
 HEADERS += \
+    brightnessdialog.h \
+    contrastdialog.h \
     label_image.h \
     photon_main.h \
     photon_undo.hpp
 
 FORMS += \
+    brightnessdialog.ui \
+    contrastdialog.ui \
     photon_main.ui
 
 INCLUDEPATH += \
@@ -37,7 +43,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    Icons.qrc
+    Icons.qrc \
+    logo.qrc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./release/ -lrsimg
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/./debug/ -lrsimg
