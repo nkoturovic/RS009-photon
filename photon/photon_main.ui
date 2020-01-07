@@ -166,7 +166,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="efekti_3">
+        <widget class="QFrame" name="istorija_frame">
          <property name="styleSheet">
           <string notr="true">QFrame{
 	background-color: #444444;
@@ -180,7 +180,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item alignment="Qt::AlignTop">
-           <widget class="QLabel" name="efekti_4">
+           <widget class="QLabel" name="istorija_label">
             <property name="font">
              <font>
               <family>Verdana</family>
@@ -203,17 +203,17 @@
            </widget>
           </item>
           <item>
-           <widget class="QScrollArea" name="scrollArea">
+           <widget class="QScrollArea" name="istorija_scroll_area">
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents">
+            <widget class="UndoPreview" name="istorija">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>164</width>
-               <height>338</height>
+               <width>158</width>
+               <height>348</height>
               </rect>
              </property>
             </widget>
@@ -233,7 +233,7 @@
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatoteka">
@@ -491,10 +491,16 @@
    <extends>QLabel</extends>
    <header>label_image.h</header>
   </customwidget>
+  <customwidget>
+   <class>UndoPreview</class>
+   <extends>QWidget</extends>
+   <header>undopreview.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <resources>
-  <include location="Icons.qrc"/>
   <include location="logo.qrc"/>
+  <include location="Icons.qrc"/>
   <include location="logo.qrc"/>
  </resources>
  <connections/>
