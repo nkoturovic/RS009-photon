@@ -12,16 +12,21 @@ namespace rs {
 /* Deklaracije klasa */
 class Transform; class Composition; class Rotate; class Flip; 
 class BlackNWhite; class Brightness; class Contrast; class Crop;
-class Invert;
+class Invert; class Overlay; class Blur; class Cartoon; class Neon;
+class Winter; class Sepia; class Silver; class Rainbow; class Summer;
 
 #define TypeHierarchy Transform, Composition, Rotate, Flip, \
                       BlackNWhite, Brightness, Contrast, Crop, \
-                      Invert
+                      Invert, Overlay, Blur, Cartoon, Neon, \
+                      Winter, Sepia, Silver, Rainbow, Summer
 
 #define ConstTypeHierarchy const Transform, const Composition,\
                            const Rotate, const Flip,\
                            const BlackNWhite, const Brightness,\
-                           const Contrast, const Crop, const Invert
+                           const Contrast, const Crop, const Invert,\
+                           const Overlay, const Blur, const Cartoon,\
+                           const Neon, const Winter, const Sepia,\
+                           const Silver, const Rainbow, const Summer
 
 /* 1) Vizitor bez rezultata (Ref verzija) */
 using TransformVisitor = impl::Visitor<TypeHierarchy>;
@@ -185,6 +190,90 @@ private:
     virtual Image& applyImpl(Image &) const override;
 };
 
+class Overlay : public impl::InheritVisitable<Overlay,Transform,TypeHierarchy> {
+public:
+    enum class Color { RED,GREEN,BLUE };
+
+    Overlay(Color color);
+    Color color() const;
+private:
+
+    Color m_color;
+
+    virtual Transform* cloneImpl() const override {
+        return new Overlay(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Blur : public impl::InheritVisitable<Blur,Transform,TypeHierarchy> {
+public:
+    Blur(int percent);
+    int percent() const;
+private:
+    int m_percent = 0;
+
+    virtual Transform* cloneImpl() const override {
+        return new Blur(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Cartoon : public impl::InheritVisitable<Cartoon,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Cartoon(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Neon : public impl::InheritVisitable<Neon,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Neon(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Winter : public impl::InheritVisitable<Winter,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Winter(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Sepia : public impl::InheritVisitable<Sepia,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Sepia(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Silver : public impl::InheritVisitable<Silver,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Silver(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Rainbow : public impl::InheritVisitable<Rainbow,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Rainbow(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
+
+class Summer : public impl::InheritVisitable<Summer,Transform,TypeHierarchy> {
+private:
+    virtual Transform* cloneImpl() const override {
+        return new Summer(*this);
+    }
+    virtual Image& applyImpl(Image &) const override;
+};
 
 Image& operator<<=(Image &img, const Transform& tr);
 Image operator<<(const Image &img, const Transform& tr);

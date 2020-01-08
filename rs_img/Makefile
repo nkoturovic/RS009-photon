@@ -21,7 +21,7 @@ dist: librsimg.a
 	rm -f rsimg.tar rsimg.tar.gz
 	tar -C include -zcvf rsimg.tar.gz rsimg ../librsimg.a
 
-demos: demo_01.out demo_02.out demo_03.out demo_04.out
+demos: demo_01.out demo_02.out demo_03.out demo_04.out demo_05.out
 	@echo "Demos maked: "
 	@echo $^
 
@@ -35,6 +35,9 @@ demo_03.out: demos/03/main.cpp librsimg.a
 	$(CXX) -o $@ $(CXXFLAGS) $(LDLIBS) $^
 
 demo_04.out: demos/04/main.cpp librsimg.a
+	$(CXX) -o $@ $(CXXFLAGS) $(LDLIBS) $^
+
+demo_05.out: demos/05/main.cpp librsimg.a
 	$(CXX) -o $@ $(CXXFLAGS) $(LDLIBS) $^
 
 librsimg.a: image.o image_impl.o transform.o display.o to_string.o
