@@ -42,8 +42,8 @@ void photon_main::on_actionOtvori_triggered()
 
 void photon_main::on_actionRotacija_triggered()
 {
-    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
-    ui->slika->update();
+/*    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    ui->slika->update();*/
 }
 
 void photon_main::on_actionPoni_ti_izmenu_undo_triggered()  //UNDO
@@ -192,5 +192,17 @@ void photon_main::on_actionCrno_belo_B_W_triggered()
 void photon_main::on_actionInvertovanje_boja_triggered()
 {
     m_imageUndo.action(rs::Invert());
+    ui->slika->update();
+}
+
+void photon_main::on_actionRotacija_ulevo_triggered()
+{
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    ui->slika->update();
+}
+
+void photon_main::on_actionRotacija_udesno_triggered()
+{
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT));
     ui->slika->update();
 }

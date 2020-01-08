@@ -166,8 +166,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>184</width>
-               <height>231</height>
+               <width>180</width>
+               <height>230</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -350,8 +350,8 @@ QPushButton:hover {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>182</width>
-               <height>229</height>
+               <width>176</width>
+               <height>226</height>
               </rect>
              </property>
             </widget>
@@ -371,7 +371,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatoteka">
@@ -390,7 +390,14 @@ QPushButton:hover {
     <property name="title">
      <string>Transformacije</string>
     </property>
-    <addaction name="actionRotacija"/>
+    <widget class="QMenu" name="menuRotacija">
+     <property name="title">
+      <string>Rotacija</string>
+     </property>
+     <addaction name="actionRotacija_ulevo"/>
+     <addaction name="actionRotacija_udesno"/>
+    </widget>
+    <addaction name="menuRotacija"/>
     <addaction name="actionObrtanje_flip"/>
     <addaction name="actionObrtanje_y_osa"/>
     <addaction name="actionSe_enje"/>
@@ -408,8 +415,8 @@ QPushButton:hover {
     <property name="title">
      <string>O programu</string>
     </property>
-    <addaction name="actionPomo"/>
     <addaction name="actionAutori"/>
+    <addaction name="actionPomo"/>
    </widget>
    <addaction name="menuDatoteka"/>
    <addaction name="menuTransformacije"/>
@@ -614,7 +621,7 @@ QPushButton:hover {
      <normaloff>:/logo/logo/logo_small.png</normaloff>:/logo/logo/logo_small.png</iconset>
    </property>
    <property name="text">
-    <string>Autori</string>
+    <string>O programu/autori</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -630,6 +637,16 @@ QPushButton:hover {
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Y</string>
+   </property>
+  </action>
+  <action name="actionRotacija_ulevo">
+   <property name="text">
+    <string>Rotacija ulevo</string>
+   </property>
+  </action>
+  <action name="actionRotacija_udesno">
+   <property name="text">
+    <string>Rotacija udesno</string>
    </property>
   </action>
  </widget>

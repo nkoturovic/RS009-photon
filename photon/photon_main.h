@@ -61,6 +61,10 @@ private slots:
 
     void on_actionInvertovanje_boja_triggered();
 
+    void on_actionRotacija_ulevo_triggered();
+
+    void on_actionRotacija_udesno_triggered();
+
 private:
     Ui::photon_main *ui;
     PhotonUndo m_imageUndo;

@@ -22,6 +22,7 @@ SOURCES += \
     custom_visitors.cpp \
     label_image.cpp \
     main.cpp \
+    oprogramudialog.cpp \
     photon_main.cpp \
     photon_undo.cpp \
     undoitem.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     cropdialog.h \
     custom_visitors.hpp \
     label_image.h \
+    oprogramudialog.h \
     photon_main.h \
     photon_undo.hpp \
     undoitem.h \
@@ -42,6 +44,7 @@ FORMS += \
     brightnessdialog.ui \
     contrastdialog.ui \
     cropdialog.ui \
+    oprogramudialog.ui \
     photon_main.ui
 
 INCLUDEPATH += \
