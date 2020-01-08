@@ -227,7 +227,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="ponisti">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -245,7 +245,7 @@
     <string>✘ Poništi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="potvrdi">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -265,5 +265,38 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>potvrdi</sender>
+   <signal>clicked()</signal>
+   <receiver>cropDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ponisti</sender>
+   <signal>clicked()</signal>
+   <receiver>cropDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>253</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

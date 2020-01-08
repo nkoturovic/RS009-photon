@@ -1,7 +1,7 @@
 #include "undoitem.h"
 
 
-UndoItem::UndoItem(QWidget *parent, QPixmap &&icon, QString &&text, bool isActive) : QWidget(parent) {
+UndoItem::UndoItem(QWidget *parent, const QPixmap &icon, QString &&text, bool isActive) : QWidget(parent) {
     QHBoxLayout * hbox = new QHBoxLayout(this);
     hbox->setSpacing(5);
     hbox->setContentsMargins(2,0,2,0);
@@ -9,7 +9,7 @@ UndoItem::UndoItem(QWidget *parent, QPixmap &&icon, QString &&text, bool isActiv
 
     m_iconLabel = new QLabel(this);
     m_iconLabel->setText("");
-    m_iconLabel->setPixmap(std::move(icon.scaled(20,20)));
+    m_iconLabel->setPixmap(icon.scaled(20,20));
     hbox->addWidget(m_iconLabel, 0, Qt::AlignLeft);
 
     m_textLabel = new QLabel(this);

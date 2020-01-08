@@ -12,3 +12,11 @@ contrastDialog::~contrastDialog()
 {
     delete ui;
 }
+
+std::optional<int> contrastDialog::getSliderValue() {
+    contrastDialog d;
+    if (d.exec() == QDialog::Accepted)
+        return d.ui->horizontalSlider->value();
+    else 
+        return {};
+}

@@ -14,6 +14,7 @@ class contrastDialog : public QDialog
 public:
     explicit contrastDialog(QWidget *parent = nullptr);
     ~contrastDialog();
+    static std::optional<int> getSliderValue();
 
 private:
     Ui::contrastDialog *ui;

@@ -86,6 +86,18 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QFrame" name="efekti">
          <property name="styleSheet">
@@ -94,13 +106,28 @@
 }</string>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item alignment="Qt::AlignTop">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item>
            <widget class="QLabel" name="efekti_2">
             <property name="font">
              <font>
@@ -121,45 +148,135 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="invertovanje">
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: #00909e;
-	color: white;
-}</string>
-            </property>
-            <property name="text">
-             <string>Invertovanje</string>
+            <property name="margin">
+             <number>2</number>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="crno_belo">
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: #00909e;
+           <widget class="QScrollArea" name="efekti_scroll_rea">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="efekti_scrollareawidget">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>184</width>
+               <height>231</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <property name="spacing">
+               <number>4</number>
+              </property>
+              <property name="leftMargin">
+               <number>4</number>
+              </property>
+              <property name="topMargin">
+               <number>4</number>
+              </property>
+              <property name="rightMargin">
+               <number>4</number>
+              </property>
+              <property name="bottomMargin">
+               <number>4</number>
+              </property>
+              <item alignment="Qt::AlignTop">
+               <widget class="QFrame" name="efekti_scroll_frame">
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <property name="spacing">
+                  <number>4</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QPushButton" name="invertovanje">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
 	color: white;
 }</string>
-            </property>
-            <property name="text">
-             <string>Crno-belo</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="crno_belo_2">
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	background-color: #00909e;
+                   </property>
+                   <property name="text">
+                    <string>Invertovanje</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/invert.png</normaloff>:/pngs/icons/invert.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="crno_belo">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
 	color: white;
 }</string>
-            </property>
-            <property name="text">
-             <string>Filter-boja</string>
-            </property>
+                   </property>
+                   <property name="text">
+                    <string>Crno-belo</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/black_white.png</normaloff>:/pngs/icons/black_white.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="crno_belo_2">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Filter-boja</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -179,6 +296,21 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
           <item alignment="Qt::AlignTop">
            <widget class="QLabel" name="istorija_label">
             <property name="font">
@@ -200,10 +332,16 @@
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
+            <property name="margin">
+             <number>2</number>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QScrollArea" name="istorija_scroll_area">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
@@ -212,8 +350,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>164</width>
-               <height>338</height>
+               <width>182</width>
+               <height>229</height>
               </rect>
              </property>
             </widget>
@@ -233,7 +371,7 @@
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatoteka">

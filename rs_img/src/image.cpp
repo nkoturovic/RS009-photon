@@ -15,7 +15,7 @@ const Image::ImageImpl& Image::impl() const {
     return *m_pimpl;
 }
 
-void Image::write(std::string image_path) { 
+void Image::write(std::string image_path) const { 
     this->impl().write(std::move(image_path));
 }
 

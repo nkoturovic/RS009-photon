@@ -64,14 +64,14 @@ void UndoItemGenerator::visit(const rs::Composition &comp) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(comp));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Rotate &rot) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(rot));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Flip &flp) {
@@ -81,9 +81,9 @@ void UndoItemGenerator::visit(const rs::Flip &flp) {
     QString str = QString::fromStdString(toStr(flp));
 
     if (flp.axis() == rs::Flip::Axis::X) {
-        result(new UndoItem(m_parentPtr, pixMapX.copy(), std::move(str)));
+        result(new UndoItem(m_parentPtr, pixMapX, std::move(str)));
     } else {
-        result(new UndoItem(m_parentPtr, pixMapY.copy(), std::move(str)));
+        result(new UndoItem(m_parentPtr, pixMapY, std::move(str)));
     }
 }
 
@@ -91,7 +91,7 @@ void UndoItemGenerator::visit(const rs::BlackNWhite &bw) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/black_white.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(bw));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Brightness &br) {
@@ -99,21 +99,21 @@ void UndoItemGenerator::visit(const rs::Brightness &br) {
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(br));
 
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Contrast &ct) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/contrast.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(ct));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Crop &cr) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/crop.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(cr));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Invert &inv) {
@@ -126,5 +126,5 @@ void UndoItemGenerator::otherwise(const rs::Transform &t) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(t));
-    result(new UndoItem(m_parentPtr, pixMap.copy(), std::move(str)));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }

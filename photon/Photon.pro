@@ -18,16 +18,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     brightnessdialog.cpp \
     contrastdialog.cpp \
+    cropdialog.cpp \
     custom_visitors.cpp \
     label_image.cpp \
     main.cpp \
     photon_main.cpp \
+    photon_undo.cpp \
     undoitem.cpp \
     undopreview.cpp
 
 HEADERS += \
     brightnessdialog.h \
     contrastdialog.h \
+    cropdialog.h \
     custom_visitors.hpp \
     label_image.h \
     photon_main.h \

@@ -22,7 +22,7 @@ struct Image::ImageImpl {
 
     void swap(ImageImpl &);
 
-    void write(std::string image_path);
+    void write(std::string image_path) const;
     size_t step() const;
     size_t width() const;
     size_t height() const;

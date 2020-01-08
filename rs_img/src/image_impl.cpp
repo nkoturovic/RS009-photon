@@ -44,7 +44,7 @@ void Image::ImageImpl::swap(Image::ImageImpl &other) {
     std::swap(m_image, other.m_image);
 }
 
-void Image::ImageImpl::ImageImpl::write(std::string image_path) {
+void Image::ImageImpl::ImageImpl::write(std::string image_path) const {
     cv::imwrite(image_path, m_image);
 }
 

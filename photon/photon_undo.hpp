@@ -11,77 +11,44 @@
 using ImageUndoType = rs::Undo<rs::Image, rs::Transform>;
 class PhotonUndo {
 public:
-    PhotonUndo(rs::Image &&img, LabelImage* labelPtr, UndoPreview *undoPrevPtr)
-        : m_undo(std::move(img)),
-          m_labelPtr(labelPtr),
-          m_undoPreviewPtr(undoPrevPtr)
-    {
-        this->updateLabel();
-    }
+    PhotonUndo(rs::Image &&img, LabelImage* labelPtr, UndoPreview *undoPrevPtr);
 
-    PhotonUndo() : PhotonUndo(rs::Image(), nullptr, nullptr) {}
+    PhotonUndo();
 
-    const rs::Image& origin() const { return m_undo.origin(); }
-    const rs::Image& current() const { return m_undo.current(); }
+    const rs::Image& origin() const;
+    const rs::Image& current() const;
 
     template <class T>
     void action(T &&tform) {
+        if (!m_imageLoaded)
+            return;
+
         m_undo.action(std::forward<T>(tform));
         this->updateFriendComponents();
     }
 
-    std::pair<bool, bool> undo() { 
-        auto retval = m_undo.undo();
-        this->updateFriendComponents();
-        return retval;
-    }
-    std::pair<bool, bool> redo() {
-        auto retval = m_undo.redo();
-        this->updateFriendComponents();
-        return retval;
-    }
+    std::pair<bool, bool> undo();
+    std::pair<bool, bool> redo();
 
-    std::vector<std::shared_ptr<const rs::Transform>> previousActions() const {
-        return m_undo.previousActions();
-    }
+    std::vector<std::shared_ptr<const rs::Transform>> previousActions() const;
 
-    std::vector<std::shared_ptr<const rs::Transform>> nextActions() const {
-        return m_undo.nextActions();
-    }
+    std::vector<std::shared_ptr<const rs::Transform>> nextActions() const;
 
-    unsigned numOfPreviousActions() const { return m_undo.numOfPreviousActions(); }
-    unsigned numOfNextActions() const { return m_undo.numOfNextActions(); }
+    unsigned numOfPreviousActions() const;
+    unsigned numOfNextActions() const;
 
 private:
     ImageUndoType m_undo;
+    bool m_imageLoaded = false;
     LabelImage *m_labelPtr = nullptr;
     UndoPreview *m_undoPreviewPtr = nullptr;
 
-    void updateFriendComponents() {
-        this->updateLabel();
-        this->updateUndoPreview();
-    }
+    void updateFriendComponents();
 
 
-    void updateLabel() {
-        if (m_labelPtr == nullptr)
-            return;
+    void updateLabel();
 
-        const rs::Image &imgRef = this->current();
-        QImage qimg = QImage(imgRef.data(), imgRef.width(), imgRef.height(), imgRef.step(), QImage::Format_BGR888);
-        m_labelPtr->setPixmap(QPixmap::fromImage(std::move(qimg)));
-    }
-
-    void updateUndoPreview() {
-
-        if (m_undoPreviewPtr == nullptr)
-            return;
-
-        this->m_undoPreviewPtr->updatePreview(
-            m_undo.previousActions(),
-            m_undo.nextActions()
-        );
-    }
+    void updateUndoPreview();
 };
 
 #endif

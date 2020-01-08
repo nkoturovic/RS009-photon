@@ -71,7 +71,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="potvrdi">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -89,7 +89,7 @@
     <string>✔ Potvrdi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="ponisti">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -109,5 +109,38 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>potvrdi</sender>
+   <signal>clicked()</signal>
+   <receiver>brightnessDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>93</x>
+     <y>136</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ponisti</sender>
+   <signal>clicked()</signal>
+   <receiver>brightnessDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>203</x>
+     <y>136</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>89</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

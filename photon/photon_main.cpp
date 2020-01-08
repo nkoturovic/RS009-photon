@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include "brightnessdialog.h"
 #include "contrastdialog.h"
+#include "cropdialog.h"
 
 photon_main::photon_main(QWidget *parent)
     : QMainWindow(parent)
@@ -65,20 +66,36 @@ void photon_main::on_actionObrtanje_y_osa_triggered()   //obrtanje po Y osi
 
 void photon_main::on_actionSe_enje_triggered()
 {
-    m_imageUndo.action(rs::Crop(0,0,100,100));          //TODO
+    auto optVal = cropDialog::getValues();
+
+    if (!optVal)
+        return;
+
+    auto val = *optVal;
+
+    m_imageUndo.action(rs::Crop(val.x,val.y,val.width,val.height));          //TODO
     ui->slika->update();
 }
 
 void photon_main::on_actionOsvetljenje_triggered()
 {
-    brightnessDialog b;
-    b.show();
+    auto optVal = brightnessDialog::getSliderValue();
+    if (!optVal)
+        return;
+
+    m_imageUndo.action(rs::Brightness(*optVal));
+    ui->slika->update();
 }
 
 void photon_main::on_actionKontrast_triggered()
 {
-    contrastDialog c;
-    c.show();
+    auto optVal = contrastDialog::getSliderValue();
+    if (!optVal) {
+        return;
+    } else {
+        m_imageUndo.action(rs::Brightness(*optVal));
+        ui->slika->update();
+    }
 }
 
 void photon_main::on_actionVrati_izmenu_redo_triggered()
@@ -109,12 +126,18 @@ void photon_main::on_obrni_x_clicked()
 void photon_main::on_actionSnimi_sa_uvaj_triggered()
 {
     QString nazivFajla = QFileDialog::getSaveFileName(this, "Sačuvaj kao");
+
+    // Ako je odabrano Cancel u dijalogu
+    if(nazivFajla.isEmpty() || nazivFajla.isNull())
+        return;
+
+    m_imageUndo.current().write(nazivFajla.toStdString());
 }
 
 void photon_main::on_plus_180_clicked()
 {
-    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
-    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::LEFT));
+    m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT)
+                       * rs::Rotate(rs::Rotate::Direction::RIGHT));
     ui->slika->update();
 }
 

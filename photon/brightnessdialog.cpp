@@ -12,3 +12,11 @@ brightnessDialog::~brightnessDialog()
 {
     delete ui;
 }
+
+std::optional<int> brightnessDialog::getSliderValue() {
+    brightnessDialog d;
+    if (d.exec() == QDialog::Accepted)
+        return d.ui->horizontalSlider->value();
+    else 
+        return {};
+}
