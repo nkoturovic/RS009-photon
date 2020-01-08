@@ -212,8 +212,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>158</width>
-               <height>348</height>
+               <width>164</width>
+               <height>338</height>
               </rect>
              </property>
             </widget>
@@ -233,7 +233,7 @@
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatoteka">
@@ -291,6 +291,16 @@
    </attribute>
    <addaction name="actionPoni_ti_izmenu_undo"/>
    <addaction name="actionVrati_izmenu_redo"/>
+   <addaction name="separator"/>
+   <addaction name="actionRotacija"/>
+   <addaction name="actionObrtanje_flip"/>
+   <addaction name="actionObrtanje_y_osa"/>
+   <addaction name="actionSe_enje"/>
+   <addaction name="separator"/>
+   <addaction name="actionOsvetljenje"/>
+   <addaction name="actionKontrast"/>
+   <addaction name="actionCrno_belo_B_W"/>
+   <addaction name="actionInvertovanje_boja"/>
   </widget>
   <action name="actionOtvori">
    <property name="icon">
@@ -499,8 +509,8 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="logo.qrc"/>
   <include location="Icons.qrc"/>
+  <include location="logo.qrc"/>
   <include location="logo.qrc"/>
  </resources>
  <connections/>

@@ -38,6 +38,7 @@ HEADERS += \
 FORMS += \
     brightnessdialog.ui \
     contrastdialog.ui \
+    cropdialog.ui \
     photon_main.ui
 
 INCLUDEPATH += \
