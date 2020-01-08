@@ -30,7 +30,7 @@ void photon_main::on_actionOtvori_triggered()
         return;
 
     try {
-        this->m_imageUndo = PhotonUndo(rs::Image(nazivFajla.toStdString()), ui->slika);
+        this->m_imageUndo = PhotonUndo(rs::Image(nazivFajla.toStdString()), ui->slika, ui->istorija);
         ui->slika->update();
     }  catch (const rs::Exception &e) {
         std::cerr << e.what() << std::endl;
