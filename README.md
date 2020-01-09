@@ -26,7 +26,7 @@ Photon omogućava primenu nekih uobičajenih efekata nad 2D fotografijom kao št
 
 - Biblioteka `rs_img` se nalazi u istoimenom poddirektorijumu ovog repozitorijuma, gde možete naći detaljne instrukcije za korišćenje. Bitno je napomenuti da trenutna (interna) implementacija zavisi od **opencv** biblioteke koju je takođe potrebno imati instaliranu na sistemu.
 
-2) [OpenCV](https://opencv.org/) - Biblioteka korišćena za manipulaciju fotografijama u okviru "zadnjeg dela" rs_img biblioteke.
+2) [OpenCV](https://opencv.org/) - Biblioteka korišćena za manipulaciju fotografijama u okviru "zadnjeg dela" **rs_img** biblioteke.
 
 3) [Qt-5](https://doc.qt.io/qt-5/) - Poznata C++ biblioteka, u ovom projektu se koristi za izradu *grafičkog korisničkog interfejsa*.
 
