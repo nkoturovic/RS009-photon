@@ -15,7 +15,16 @@ private:
     void visit(const rs::Brightness&) override;
     void visit(const rs::Contrast&) override;
     void visit(const rs::Crop&) override;
-    void visit(const rs::Invert &) override;
+    void visit(const rs::Invert&) override;
+    void visit(const rs::Cartoon&) override;
+    void visit(const rs::Overlay&) override;
+    void visit(const rs::Blur&) override;
+    void visit(const rs::Neon&) override;
+    void visit(const rs::Winter&) override;
+    void visit(const rs::Summer&) override;
+    void visit(const rs::Rainbow&) override;
+    void visit(const rs::Silver&) override;
+    void visit(const rs::Sepia&) override;
     void otherwise(const rs::Transform&) override;
 };
 
@@ -33,6 +42,15 @@ private:
     void visit(const rs::Contrast &) override;
     void visit(const rs::Crop &) override;
     void visit(const rs::Invert &) override;
+    void visit(const rs::Cartoon&) override;
+    void visit(const rs::Overlay&) override;
+    void visit(const rs::Blur&) override;
+    void visit(const rs::Neon&) override;
+    void visit(const rs::Winter&) override;
+    void visit(const rs::Summer&) override;
+    void visit(const rs::Rainbow&) override;
+    void visit(const rs::Silver&) override;
+    void visit(const rs::Sepia&) override;
     void otherwise(const rs::Transform &) override;
 };
 

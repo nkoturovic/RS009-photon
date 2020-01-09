@@ -16,10 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    blurdialog.cpp \
     brightnessdialog.cpp \
     contrastdialog.cpp \
     cropdialog.cpp \
     custom_visitors.cpp \
+    folijadijalog.cpp \
     label_image.cpp \
     main.cpp \
     oprogramudialog.cpp \
@@ -29,10 +31,12 @@ SOURCES += \
     undopreview.cpp
 
 HEADERS += \
+    blurdialog.h \
     brightnessdialog.h \
     contrastdialog.h \
     cropdialog.h \
     custom_visitors.hpp \
+    folijadijalog.h \
     label_image.h \
     oprogramudialog.h \
     photon_main.h \
@@ -41,9 +45,11 @@ HEADERS += \
     undopreview.h
 
 FORMS += \
+    blurdialog.ui \
     brightnessdialog.ui \
     contrastdialog.ui \
     cropdialog.ui \
+    folijadijalog.ui \
     oprogramudialog.ui \
     photon_main.ui
 

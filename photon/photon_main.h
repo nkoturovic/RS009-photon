@@ -65,6 +65,46 @@ private slots:
 
     void on_actionRotacija_udesno_triggered();
 
+    void on_actionAutori_triggered();
+
+    void on_actionFolija_triggered();
+
+    void on_actionZamu_enje_triggered();
+
+    void on_actionCrte_triggered();
+
+    void on_crtez_clicked();
+
+    void on_actionSrebro_triggered();
+
+    void on_actionLeto_triggered();
+
+    void on_srebro_clicked();
+
+    void on_leto_clicked();
+
+    void on_actionZima_triggered();
+
+    void on_zima_clicked();
+
+    void on_actionDuga_triggered();
+
+    void on_duga_clicked();
+
+    void on_actionNeon_triggered();
+
+    void on_neon_clicked();
+
+    void on_actionSepia_triggered();
+
+    void on_sepia_clicked();
+
+    void on_sepia_2_clicked();
+
+    void on_folija_clicked();
+
+    void on_zamucenje_clicked();
+
 private:
     Ui::photon_main *ui;
     PhotonUndo m_imageUndo;

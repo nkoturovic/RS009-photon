@@ -126,5 +126,22 @@
   <include location="logo.qrc"/>
   <include location="logo.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>oProgramuDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>283</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>278</x>
+     <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

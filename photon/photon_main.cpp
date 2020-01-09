@@ -8,6 +8,9 @@
 #include "brightnessdialog.h"
 #include "contrastdialog.h"
 #include "cropdialog.h"
+#include "oprogramudialog.h"
+#include "folijadijalog.h"
+#include "blurdialog.h"
 
 photon_main::photon_main(QWidget *parent)
     : QMainWindow(parent)
@@ -204,5 +207,140 @@ void photon_main::on_actionRotacija_ulevo_triggered()
 void photon_main::on_actionRotacija_udesno_triggered()
 {
     m_imageUndo.action(rs::Rotate(rs::Rotate::Direction::RIGHT));
+    ui->slika->update();
+}
+
+void photon_main::on_actionAutori_triggered()
+{
+    oProgramuDialog d;
+    d.exec();
+}
+
+void photon_main::on_actionFolija_triggered()
+{
+    auto color = folijaDijalog::getColor();
+    if (!color)
+        return;
+
+   m_imageUndo.action(rs::Overlay(*color));
+   ui->slika->update();
+
+}
+
+void photon_main::on_actionZamu_enje_triggered()
+{
+    auto val = blurDialog::getSliderValue();
+    if (!val) {
+        return;
+    }
+    m_imageUndo.action(rs::Blur(*val));
+    ui->slika->update();
+}
+
+void photon_main::on_actionCrte_triggered()
+{
+   m_imageUndo.action(rs::Cartoon());
+   ui->slika->update();
+}
+
+void photon_main::on_crtez_clicked()
+{
+    m_imageUndo.action(rs::Cartoon());
+    ui->slika->update();
+}
+
+void photon_main::on_actionSrebro_triggered()
+{
+    m_imageUndo.action(rs::Silver());
+    ui->slika->update();
+}
+
+void photon_main::on_actionLeto_triggered()
+{
+    m_imageUndo.action(rs::Summer());
+    ui->slika->update();
+}
+
+void photon_main::on_srebro_clicked()
+{
+    m_imageUndo.action(rs::Silver());
+    ui->slika->update();
+}
+void photon_main::on_leto_clicked()
+{
+    m_imageUndo.action(rs::Summer());
+    ui->slika->update();
+}
+
+void photon_main::on_actionZima_triggered()
+{
+    m_imageUndo.action(rs::Winter());
+    ui->slika->update();
+
+}
+
+void photon_main::on_zima_clicked()
+{
+    m_imageUndo.action(rs::Winter());
+    ui->slika->update();
+}
+
+void photon_main::on_actionDuga_triggered()
+{
+    m_imageUndo.action(rs::Rainbow());
+    ui->slika->update();
+}
+
+void photon_main::on_duga_clicked()
+{
+    m_imageUndo.action(rs::Rainbow());
+    ui->slika->update();
+}
+
+void photon_main::on_actionNeon_triggered()
+{
+    m_imageUndo.action(rs::Neon());
+    ui->slika->update();
+}
+
+void photon_main::on_neon_clicked()
+{
+    m_imageUndo.action(rs::Neon());
+    ui->slika->update();
+}
+
+void photon_main::on_actionSepia_triggered()
+{
+    m_imageUndo.action(rs::Sepia());
+    ui->slika->update();
+}
+
+void photon_main::on_sepia_clicked()
+{
+    m_imageUndo.action(rs::Sepia());
+    ui->slika->update();
+}
+
+void photon_main::on_sepia_2_clicked()
+{
+}
+
+void photon_main::on_folija_clicked()
+{
+    auto color = folijaDijalog::getColor();
+    if (!color)
+        return;
+
+   m_imageUndo.action(rs::Overlay(*color));
+   ui->slika->update();
+}
+
+void photon_main::on_zamucenje_clicked()
+{
+    auto val = blurDialog::getSliderValue();
+    if (!val) {
+        return;
+    }
+    m_imageUndo.action(rs::Blur(*val));
     ui->slika->update();
 }

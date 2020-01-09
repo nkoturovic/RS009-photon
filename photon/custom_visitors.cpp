@@ -59,6 +59,41 @@ void ToStringSR::otherwise(const rs::Transform &) {
     result("Druga transformacija");
 }
 
+void ToStringSR::visit(const rs::Cartoon&) {
+    result("Crtez");
+}
+
+void ToStringSR::visit(const rs::Overlay&) {
+    result("Folija");
+}
+
+void ToStringSR::visit(const rs::Blur& tform) {
+    result("Zamucenje(" + rounded(std::to_string(tform.percent())) + ")");
+}
+
+void ToStringSR::visit(const rs::Neon&) {
+    result("Neon");
+}
+
+void ToStringSR::visit(const rs::Winter&) {
+    result("Zima");
+}
+
+void ToStringSR::visit(const rs::Summer&) {
+    result("Leto");
+}
+
+void ToStringSR::visit(const rs::Rainbow&) {
+    result("Duga");
+}
+
+void ToStringSR::visit(const rs::Silver&) {
+    result("Srebro");
+}
+
+void ToStringSR::visit(const rs::Sepia&) {
+    result("Sepia");
+}
 
 void UndoItemGenerator::visit(const rs::Composition &comp) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
@@ -68,10 +103,16 @@ void UndoItemGenerator::visit(const rs::Composition &comp) {
 }
 
 void UndoItemGenerator::visit(const rs::Rotate &rot) {
-    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
+    static QPixmap pixMapLeft = QPixmap::fromImage(QImage(":pngs/icons/left.png"));
+    static QPixmap pixMapRight = QPixmap::fromImage(QImage(":pngs/icons/right.png"));
+
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(rot));
-    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+
+    if(rot.direction()==rs::Rotate::Direction::LEFT)
+        result(new UndoItem(m_parentPtr, pixMapLeft, std::move(str)));
+    else
+        result(new UndoItem(m_parentPtr, pixMapRight, std::move(str)));
 }
 
 void UndoItemGenerator::visit(const rs::Flip &flp) {
@@ -126,5 +167,68 @@ void UndoItemGenerator::otherwise(const rs::Transform &t) {
     static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rotate.png"));
     ToStringSR toStr;
     QString str = QString::fromStdString(toStr(t));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Cartoon& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/cartoon.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Overlay& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rgb.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Blur& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/blur.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Neon& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/neon.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Winter& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/winter.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Summer& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/summer.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Rainbow& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/rainbow.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Silver& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/silver.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
+    result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
+}
+
+void UndoItemGenerator::visit(const rs::Sepia& tform) {
+    static QPixmap pixMap = QPixmap::fromImage(QImage(":pngs/icons/sepia.png"));
+    ToStringSR toStr;
+    QString str = QString::fromStdString(toStr(tform));
     result(new UndoItem(m_parentPtr, pixMap, std::move(str)));
 }

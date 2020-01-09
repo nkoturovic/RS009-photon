@@ -165,9 +165,9 @@
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>0</y>
-               <width>180</width>
-               <height>230</height>
+               <y>-135</y>
+               <width>170</width>
+               <height>372</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -195,21 +195,6 @@
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
-                 <property name="spacing">
-                  <number>4</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
                  <item>
                   <widget class="QPushButton" name="invertovanje">
                    <property name="styleSheet">
@@ -255,7 +240,7 @@ QPushButton:hover {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="crno_belo_2">
+                  <widget class="QPushButton" name="zamucenje">
                    <property name="styleSheet">
                     <string notr="true">QPushButton{
 	background-color: #444444;
@@ -268,7 +253,187 @@ QPushButton:hover {
 }</string>
                    </property>
                    <property name="text">
-                    <string>Filter-boja</string>
+                    <string>Zamućenje</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/blur.png</normaloff>:/pngs/icons/blur.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="crtez">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Crtež</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/cartoon.png</normaloff>:/pngs/icons/cartoon.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="srebro">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Srebro</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/silver.png</normaloff>:/pngs/icons/silver.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="leto">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Leto</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/summer.png</normaloff>:/pngs/icons/summer.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="zima">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Zima</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/winter.png</normaloff>:/pngs/icons/winter.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="duga">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Duga</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/rainbow.png</normaloff>:/pngs/icons/rainbow.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="neon">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Neon</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/neon.png</normaloff>:/pngs/icons/neon.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="sepia">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Sepia</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/sepia.png</normaloff>:/pngs/icons/sepia.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="folija">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	background-color: #444444;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color: #2b95cc;
+	color: white;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Folija</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="Icons.qrc">
+                     <normaloff>:/pngs/icons/rgb.png</normaloff>:/pngs/icons/rgb.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -350,8 +515,8 @@ QPushButton:hover {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>176</width>
-               <height>226</height>
+               <width>182</width>
+               <height>235</height>
               </rect>
              </property>
             </widget>
@@ -371,7 +536,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatoteka">
@@ -394,6 +559,10 @@ QPushButton:hover {
      <property name="title">
       <string>Rotacija</string>
      </property>
+     <property name="icon">
+      <iconset resource="Icons.qrc">
+       <normaloff>:/pngs/icons/rotate.png</normaloff>:/pngs/icons/rotate.png</iconset>
+     </property>
      <addaction name="actionRotacija_ulevo"/>
      <addaction name="actionRotacija_udesno"/>
     </widget>
@@ -410,6 +579,15 @@ QPushButton:hover {
     <addaction name="actionKontrast"/>
     <addaction name="actionCrno_belo_B_W"/>
     <addaction name="actionInvertovanje_boja"/>
+    <addaction name="actionZamu_enje"/>
+    <addaction name="actionCrte"/>
+    <addaction name="actionSrebro"/>
+    <addaction name="actionLeto"/>
+    <addaction name="actionZima"/>
+    <addaction name="actionDuga"/>
+    <addaction name="actionNeon"/>
+    <addaction name="actionSepia"/>
+    <addaction name="actionFolija"/>
    </widget>
    <widget class="QMenu" name="menuO_programu">
     <property name="title">
@@ -437,15 +615,15 @@ QPushButton:hover {
    <addaction name="actionPoni_ti_izmenu_undo"/>
    <addaction name="actionVrati_izmenu_redo"/>
    <addaction name="separator"/>
-   <addaction name="actionRotacija"/>
    <addaction name="actionObrtanje_flip"/>
    <addaction name="actionObrtanje_y_osa"/>
    <addaction name="actionSe_enje"/>
+   <addaction name="actionRotacija_ulevo"/>
+   <addaction name="actionRotacija_udesno"/>
    <addaction name="separator"/>
    <addaction name="actionOsvetljenje"/>
    <addaction name="actionKontrast"/>
-   <addaction name="actionCrno_belo_B_W"/>
-   <addaction name="actionInvertovanje_boja"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionOtvori">
    <property name="icon">
@@ -517,18 +695,6 @@ QPushButton:hover {
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>
-   </property>
-  </action>
-  <action name="actionRotacija">
-   <property name="icon">
-    <iconset resource="Icons.qrc">
-     <normaloff>:/pngs/icons/rotate.png</normaloff>:/pngs/icons/rotate.png</iconset>
-   </property>
-   <property name="text">
-    <string>Rotacija</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionObrtanje_flip">
@@ -640,13 +806,108 @@ QPushButton:hover {
    </property>
   </action>
   <action name="actionRotacija_ulevo">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/left.png</normaloff>:/pngs/icons/left.png</iconset>
+   </property>
    <property name="text">
     <string>Rotacija ulevo</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
   </action>
   <action name="actionRotacija_udesno">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/right.png</normaloff>:/pngs/icons/right.png</iconset>
+   </property>
    <property name="text">
     <string>Rotacija udesno</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionZamu_enje">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/blur.png</normaloff>:/pngs/icons/blur.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zamućenje</string>
+   </property>
+  </action>
+  <action name="actionCrte">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/cartoon.png</normaloff>:/pngs/icons/cartoon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Crtež</string>
+   </property>
+  </action>
+  <action name="actionSrebro">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/silver.png</normaloff>:/pngs/icons/silver.png</iconset>
+   </property>
+   <property name="text">
+    <string>Srebro</string>
+   </property>
+  </action>
+  <action name="actionLeto">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/summer.png</normaloff>:/pngs/icons/summer.png</iconset>
+   </property>
+   <property name="text">
+    <string>Leto</string>
+   </property>
+  </action>
+  <action name="actionZima">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/winter.png</normaloff>:/pngs/icons/winter.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zima</string>
+   </property>
+  </action>
+  <action name="actionNeon">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/neon.png</normaloff>:/pngs/icons/neon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Neon</string>
+   </property>
+  </action>
+  <action name="actionSepia">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/sepia.png</normaloff>:/pngs/icons/sepia.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sepia</string>
+   </property>
+  </action>
+  <action name="actionDuga">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/rainbow.png</normaloff>:/pngs/icons/rainbow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Duga</string>
+   </property>
+  </action>
+  <action name="actionFolija">
+   <property name="icon">
+    <iconset resource="Icons.qrc">
+     <normaloff>:/pngs/icons/rgb.png</normaloff>:/pngs/icons/rgb.png</iconset>
+   </property>
+   <property name="text">
+    <string>Folija</string>
    </property>
   </action>
  </widget>
