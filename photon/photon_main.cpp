@@ -96,7 +96,7 @@ void photon_main::on_actionKontrast_triggered()
     if (!optVal) {
         return;
     } else {
-        m_imageUndo.action(rs::Brightness(*optVal));
+        m_imageUndo.action(rs::Contrast(*optVal));
         ui->slika->update();
     }
 }
