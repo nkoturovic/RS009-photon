@@ -10,7 +10,7 @@
 - Miloš Krsmanović ([mi15263@alas.matf.bg.ac.rs](#))
 - Nebojša Koturović ([mi15139@alas.matf.bg.ac.rs](#))
 
-<img src="https://raw.githubusercontent.com/MATF-RS20/RS009-photon/master/images/01_gui_v1.png" width="300" height="225">
+<img src="https://raw.githubusercontent.com/MATF-RS20/RS009-photon/master/images/02_gui_v2.png" width="300" height="225">
 
 **Opis projekta:**
 
@@ -30,7 +30,8 @@ Photon omogućava primenu nekih uobičajenih efekata nad 2D fotografijom kao št
 
 ## Eksterne reference
 
-Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodeljen našem timu, stoga vam na uvid dostavljamo reference koje prikazuju razvoj pre (ali i za vreme) razvoja projekta u okviru ovog repozitorijuma.
+Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodeljen našem timu, stoga vam na uvid dostavljamo reference koje prikazuju razvoj pre (ali i za vreme) razvoja projekta u okviru ovog repozitorijuma. Kao i reference na eksterne izvore (kodove) koji su korišćen u projektu.
 
 - [Google-Drive collaboration](https://drive.google.com/drive/folders/1SgZl3qXTuc3MVdtxagyP0fmbx81U8Kl-?usp=sharing)
 - [rs_img: Missing Commit History](https://github.com/nkoturovic/Programming/search?q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&unscoped_q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&type=Commits)
+- [Heartbeat.fritz.ai (OpenCV)](https://heartbeat.fritz.ai/image-effects-for-android-using-opencv-cartoon-effect-9d1c8c257b2a)
