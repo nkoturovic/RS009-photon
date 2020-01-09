@@ -35,3 +35,4 @@ Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodelje
 - [Google-Drive collaboration](https://drive.google.com/drive/folders/1SgZl3qXTuc3MVdtxagyP0fmbx81U8Kl-?usp=sharing)
 - [rs_img: Missing Commit History](https://github.com/nkoturovic/Programming/search?q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&unscoped_q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&type=Commits)
 - [Heartbeat.fritz.ai (OpenCV)](https://heartbeat.fritz.ai/image-effects-for-android-using-opencv-cartoon-effect-9d1c8c257b2a)
+- [Pimpl class (spimpl)](https://github.com/oliora/samples/blob/master/spimpl.h)
