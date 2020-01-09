@@ -80,3 +80,7 @@ else:unix: PRE_TARGETDEPS += $$PWD/./librsimg.a
 
 unix: CONFIG += link_pkgconfig
 unix: PKGCONFIG += opencv
+
+system(echo "Integrating RS_IMG library with this project ...")
+system(cd ../rs_img && make -j7 librsimg.a > /dev/null 2>&1 && echo "RS_IMG library is integrated successfully!")
+system(echo "Run 'make' command to build Photon project!")

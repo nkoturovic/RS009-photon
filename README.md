@@ -28,6 +28,17 @@ Photon omogućava primenu nekih uobičajenih efekata nad 2D fotografijom kao št
 
 2) [Qt-5](https://doc.qt.io/qt-5/) - Poznata C++ biblioteka, u ovom projektu se koristi za izradu *grafičkog korisničkog interfejsa*.
 
+## Buildovanje projekta
+
+Da buildujete projekat unesite sledeće shell komande:
+
+```
+cd photon
+qmake && make -j8
+```
+
+U folderu `photon` će vam se pojaviti izvršni fajl koji se pokreće komandom `./Photon`.
+
 ## Eksterne reference
 
 Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodeljen našem timu, stoga vam na uvid dostavljamo reference koje prikazuju razvoj pre (ali i za vreme) razvoja projekta u okviru ovog repozitorijuma. Kao i reference na eksterne izvore (kodove) koji su korišćen u projektu.
@@ -36,3 +47,4 @@ Razvoj projekta je otpočet još pre nego što je ovaj repozitorijum bio dodelje
 - [rs_img: Missing Commit History](https://github.com/nkoturovic/Programming/search?q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&unscoped_q=committer-date%3A%3E2019-11-07+author-date%3A%3C2019-11-14&type=Commits)
 - [Heartbeat.fritz.ai (OpenCV)](https://heartbeat.fritz.ai/image-effects-for-android-using-opencv-cartoon-effect-9d1c8c257b2a)
 - [Pimpl class (spimpl)](https://github.com/oliora/samples/blob/master/spimpl.h)
+- [Generički visitor pattern](https://github.com/nkoturovic/visitor_pattern)
