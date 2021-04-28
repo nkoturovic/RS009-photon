@@ -52,9 +52,11 @@ public:
     using visit_base_type = typename Visitor::visit_base_type;
     using visit_return_type = ResultType;
 
-    ResultType&& operator()(visit_base_type &b) {
+    [[nodiscard]] ResultType operator()(visit_base_type &b) {
         b.accept(static_cast<Visitor&>(*this));
-        return std::move(m_result);
+        ResultType tmp;
+        std::swap(tmp, m_result);
+        return tmp;
     }
 };
 
